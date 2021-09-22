@@ -1,12 +1,13 @@
 import Head from 'next/head'
+import Header from '../components/Header';
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex bg-white dark:bg-gray-800 flex-col items-center justify-center min-h-screen py-2">
       <Head>
         <title>Home | Zachary Collazo</title>
       </Head>
-
+      <Header />
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-6xl font-bold">
           Welcome to{' '}
