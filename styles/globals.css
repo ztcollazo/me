@@ -3,6 +3,11 @@
 @tailwind utilities;
 @tailwind variants;
 
+html {
+    scrollbar-width: thin;
+    scrollbar-arrow-color: currentColor;
+}
+
 .animated-underline {
     position: relative;
     border-bottom: none;
@@ -39,5 +44,17 @@
     bottom: 0;
     left: 0;
     background-color: currentColor;
-    transform: scaleX(1);
+    transform: scaleX(0.5);
+}
+
+.slanted-right {
+    -webkit-clip-path: polygon(0 0, 75% 0, 25% 100%, 0% 100%);
+    clip-path: polygon(0 0, 75% 0, 25% 100%, 0% 100%);
+    @apply text-left px-16;
+}
+
+.slanted-left {
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 25% 100%, 75% 0);
+    clip-path: polygon(100% 0, 100% 100%, 25% 100%, 75% 0);
+    @apply text-right px-16;
 }
