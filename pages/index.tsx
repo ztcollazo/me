@@ -1,83 +1,55 @@
 import Head from 'next/head'
-import Header from '../components/Header';
+import { RoughNotationGroup, RoughNotation } from 'react-rough-notation';
+import { useTheme } from 'next-themes';
+import { useMediaQuery } from 'react-responsive';
+import { random, randomColor } from '../utils/random';
+import Link from 'next/link';
 
 const Home = () => {
+  const { theme } = useTheme();
+  const small = useMediaQuery({minWidth: 768});
+  const inBetween = useMediaQuery({minWidth: 1020});
+  const dark = theme === "dark";
+
   return (
-    <div className="flex bg-white dark:bg-gray-800 flex-col items-center justify-center min-h-screen py-2">
+    <div className="overflow-hidden relative z-0 m-0 t-0 left-0 right-0 text-center">
       <Head>
         <title>Home | Zachary Collazo</title>
       </Head>
-      <Header />
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+      <main className="flex flex-col md:grid m-0 md:grid-cols-1 justify-between pr-36 md:pr-20 md:p-12 items-stretch">
+        <RoughNotation show={small} iterations={random(2, 6)} type="box" animate animationDelay={1400} animationDuration={1000} color={randomColor(dark)}>
+          <div id="jumbotron" className="flex relative md:grid items-stretch justify-between w-full flex-col md:grid-cols-2 font-mono">
+            <RoughNotationGroup> 
+              <div className={`flex w-full md:m-20 m-16 flex-col items-stretch`}>
+                <RoughNotation iterations={random(2, 6)} animate show animationDuration={700} color={randomColor(dark)} strokeWidth={3} type="circle">
+                  <h1 className="md:text-9xl text-5xl py-4">Hello</h1>
+                </RoughNotation>
+                <h2 className="md:text-4xl text-lg p-2 md:p-4">my name is</h2>
+                <RoughNotation multiline iterations={random(2, 6)} animate show animationDuration={700} color={randomColor(dark)} type="highlight">
+                  <h1 className="md:text-6xl text-3xl font-extralight">Zachary Collazo</h1>
+                </RoughNotation>
+                <h1 className="mt-12 rotate-6 md:text-5xl text-2xl font-mono">
+                  <span style={{color: randomColor(dark)}}>I </span>
+                  <span style={{color: randomColor(true)}} className="font-mono dark:bg-gray-700 bg-gray-200 rounded-xl p-2"><code>Code</code></span>
+                  <span style={{color: randomColor(dark)}}> Stuff</span>
+                </h1>
+              </div>
+            </RoughNotationGroup>
+            {/* <div className="text-center md:text-5xl text-2xl font-serif rotate-12">
+              Image will go here eventually
+              <h1>Image Placeholder</h1>
+            </div> */}
+          </div>
+        </RoughNotation>
       </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
+      <div className="bg-transparent h-full grid grid-cols-2 grid-flow-row-dense min-w-screen">
+        <div className="slanted-right h-full absolute left-0 min-w-full">
+          <h2>Slanted-right</h2>
+        </div>
+        <div className="slanted-left h-full w-1/2 absolute right-0 min-w-full bg-gray-300 dark:bg-gray-600">
+          <h2>Slanted-left</h2>
+        </div>
+      </div>
     </div>
   )
 }
