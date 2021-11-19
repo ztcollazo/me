@@ -9,7 +9,7 @@ module.exports = withPWA({
     disable: !prod
   },
   images: {
-    domains: ['avatars.githubusercontent.com']
+    domains: ['avatars.githubusercontent.com', 'github.com']
   },
   webpack(config, {}) {
     config.resolve.fallback = {
