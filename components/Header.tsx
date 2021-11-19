@@ -93,7 +93,7 @@ const Header = () => {
   // toggle the responsive nav
   const toggle = useCallback(() => {
     if (!pinned) return;
-    setH(h === '0' || h === '0px' ? '250px' : '0');
+    setH(h === '0' || h === '0px' ? '275px' : '0');
     setShouldOpen(!shouldOpen);
     if (open) {
       setTimeout(() => setOpen(!open), 400);
@@ -128,9 +128,9 @@ const Header = () => {
 
   return (
     <Headroom disable={(topOfPage || inView) && !scrollingUp} onUnpin={() => setPinned(false)} onPin={() => setPinned(true)} className="w-full left-0 right-0 bg-white z-[10000] dark:bg-gray-900 top-0" wrapperStyle={{ marginBottom: 10, zIndex: 1000 }}>
-      <div ref={ref} style={{ borderBottom: inView && !open && `1px solid ${colors.gray[400]}` }} className={`opacity-90 ${!open && !inView && pinned && 'shadow-2xl'} top-0 left-0 bg-white dark:bg-gray-900 p-5 pt-4 pb-4 w-full right-0 dark:text-white text-black`}>
+      <div ref={ref} style={{ borderBottom: inView && !open && `1px solid ${colors.gray[400]}` }} className={`opacity-90${!open && !inView && pinned ? ' shadow-2xl' : ''} top-0 left-0 bg-white dark:bg-gray-900 p-5 pt-4 pb-4 w-full right-0 dark:text-white text-black`}>
         <Link passHref href="/">
-          <a className="text-center ml-2 md:ml-auto md:text-left">
+          <a className="text-center ml-8 md:ml-auto md:text-left">
             <Image src={`/me-${theme}.png`} alt="" width={40} height={40} />
           </a>
         </Link>
@@ -140,7 +140,7 @@ const Header = () => {
           <PageLink href="/projects">Projects</PageLink>
           <ThemeSwtich />
         </nav>
-        <div style={{ backgroundColor: 'inherit', zIndex: -1 }} className="float-right opacity-100 md:hidden absolute w-full p-0 top-0 m-0 right-0">
+        <div style={{ backgroundColor: 'inherit', zIndex: -1 }} className="float-right bg-opacity-90 md:hidden absolute w-full p-0 top-0 m-0 right-0">
           <button type="button" onClick={toggle} className="float-right relative text-current p-5 pt-3 -t-1">
             <Squash
               color="currentColor"
@@ -155,14 +155,14 @@ const Header = () => {
                 maxHeight: pinned ? h : '0',
                 zIndex: -1,
                 backgroundColor: 'inherit',
-                borderBottom: open && topOfPage && `1px solid ${colors.gray[400]}`,
+                borderBottom: topOfPage && `1px solid ${colors.gray[400]}`,
               }}
               className={`overflow-hidden ${topOfPage ? '' : 'shadow-2xl'} block opacity-100 mt-16 z-50 w-full top-1 right-0 left-0`}
             >
-              <PageLink onClick={toggle} className="w-full block" href="/">Home</PageLink>
-              <PageLink onClick={toggle} className="w-full block" href="/about">About</PageLink>
-              <PageLink onClick={toggle} className="w-full block" href="/projects">Projects</PageLink>
-              <span className="w-full block p-5">
+              <PageLink onClick={toggle} className="w-full mx-4 block" href="/">Home</PageLink>
+              <PageLink onClick={toggle} className="w-full mx-4 block" href="/about">About</PageLink>
+              <PageLink onClick={toggle} className="w-full mx-4 block" href="/projects">Projects</PageLink>
+              <span className="w-full flex flex-row justify-around p-5">
                 <span>{theme === 'dark' ? 'Disable dark mode' : 'Enable dark mode'}</span>
                 <ThemeSwtich />
               </span>

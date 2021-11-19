@@ -5,7 +5,7 @@ import { animateScroll as scroll } from 'react-scroll';
 const BackToTop = () => {
   const [atTop, setAtTop] = useState(true);
 
-  const handleScroll = () => setAtTop(window.scrollY === 0);
+  const handleScroll = () => setAtTop(window.scrollY < 100);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -13,7 +13,7 @@ const BackToTop = () => {
   });
 
   return (
-    <button type="button" className={`rounded-xl ${atTop ? 'hidden' : ''} z-50 shadow-xl cursor-pointer dark:text-black text-gray-600 p-4 bg-white fixed bottom-10 right-10`} onClick={() => scroll.scrollToTop()}>
+    <button type="button" className={`rounded-xl ${atTop ? 'hidden' : ''} z-50 shadow-xl cursor-pointer dark:text-black text-gray-600 p-4 bg-white fixed bottom-10 right-10`} onClick={() => scroll.scrollToTop({ smooth: true })}>
       <HiOutlineChevronUp className="cursor-pointer" />
     </button>
   );
