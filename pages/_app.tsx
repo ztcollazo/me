@@ -3,12 +3,12 @@ import NProgress from 'nprogress';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
-import '../styles/globals.css';
+import '@/styles/globals.css';
 import { Router } from 'next/router';
 import colors from 'tailwindcss/colors';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import BackToTop from '../components/BackToTop';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({

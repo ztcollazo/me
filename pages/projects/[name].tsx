@@ -10,9 +10,11 @@ import rehypeRaw from 'rehype-raw';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSanitize from 'rehype-sanitize';
 import { FC, useEffect, useRef } from 'react';
-import { getProject } from '../../utils/github';
-import nameFor from '../../utils/name-for';
-import Topic from '../../components/Topic';
+import Topic from '@/components/Topic';
+import { getProject } from '@/utils/github';
+import nameFor from '@/utils/name-for';
+// @ts-ignore
+import resources from '@/resources/projects';
 
 const findImage = (href: string, repo: string = 'ztcollazo', owner: string = 'ztcollazo'): string => {
   if ((!href.startsWith('https://') && !href.startsWith('http://') && !href.startsWith('//')) || href.startsWith('./')) {
@@ -46,13 +48,13 @@ const MdImage: FC<{
         ref={imageRef}
         src={findImage(src, repo, owner)}
         {...(
-                  // eslint-disable-next-line no-nested-ternary
-                  width || height
-                    ? { width, height }
-                    : style?.width || style?.height
-                      ? { width: style.width, height: style.height }
-                      : { layout: 'fill', objectFit: 'contain' }
-                )}
+              // eslint-disable-next-line no-nested-ternary
+              width || height
+                ? { width, height }
+                : style?.width || style?.height
+                  ? { width: style.width, height: style.height }
+                  : { layout: 'fill', objectFit: 'contain' }
+            )}
         alt={alt}
         {...props}
       />
@@ -73,56 +75,68 @@ const Project = ({ project, error }) => (
     {!error ? (
       <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 p-16 font-mono">
         <h1 className="font-bold text-center md:text-8xl mb-8 text-5xl">{nameFor(project.name)}</h1>
-        <div style={{ gridTemplateColumns: '75% 25%' }} className="md:grid flex flex-col flex-wrap-reverse md:flex-nowrap m-auto md:m-[initial]">
-          {project.readme && (
-          <div className="font-sans mt-4 border-[1px] dark:border-gray-300 border-gray-500 rounded-lg p-4 m-auto md:m-[initial]">
-            <a target="_blank" rel="noopener noreferrer" href={project.readme.url}><h4 className="text-lg hover:underline mb-4 dark:text-gray-300">Project Readme</h4></a>
-            <hr className="dark:opacity-40 opacity-70 -mx-4" />
+        <div style={{ gridTemplateColumns: '75% 25%' }} className="md:grid flex flex-col-reverse m-auto md:m-[initial]">
+          <div>
             <ReactMarkdown
-              rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeSanitize]}
-              remarkPlugins={[remarkGfm, remarkGemoji]}
+              className="m-2"
               components={{
-                h1: ({ node, ...props }) => (
-                  <>
-                    <h1 className="text-3xl my-2" {...props} />
-                    <hr className="my-2 opacity-40" />
-                  </>
-                ),
-                h2: ({ node, ...props }) => (
-                  <>
-                    <h2 className="text-2xl my-2" {...props} />
-                    <hr className="my-2 opacity-40" />
-                  </>
-                ),
-                h3: ({ node, ...props }) => <h3 className="text-xl" {...props} />,
-                h4: ({ node, ...props }) => <h4 className="text-lg" {...props} />,
-                code: ({ node, ...props }) => <span className="whitespace-pre-wrap"><code {...props} className="font-mono p-1 px-2 rounded-md bg-gray-400 bg-opacity-50" /></span>,
-                ol: ({ node, ...props }) => <ol className="px-6 list-[number] list-inside" {...props} />,
-                ul: ({ node, ...props }) => <ul className="px-6 list-disc list-inside" {...props} />,
-                li: ({ node, ...props }) => <li className="my-2" {...props} />,
-                p: ({ node, ...props }) => <p className="my-3" {...props} />,
-                pre: ({ node, ...props }) => <pre className="p-2 px-4 bg-opacity-50 rounded-md bg-gray-400" {...props} />,
-                img: ({ node, ...props }) => (
-                  <MdImage
-                    imageProps={props}
-                    owner={project.owner.name}
-                    repo={project.name}
-                  />
-                ),
                 a: ({
                   node, href, children, ...props
                 }) => <a href={href} target="_blank" rel="noopener noreferrer" className="dark:text-blue-400 hover:underline text-blue-600" {...props}>{children}</a>,
               }}
             >
-              {project.readme.text}
+              {Buffer.from(resources[project.name], 'base64').toString()}
             </ReactMarkdown>
+            {project.readme && (
+            <div className="font-sans mt-4 border-[1px] dark:border-gray-300 border-gray-500 rounded-lg p-4 m-auto md:m-[initial]">
+              <a target="_blank" rel="noopener noreferrer" href={project.readme.url}><h4 className="text-lg hover:underline mb-4 dark:text-gray-300">Project Readme</h4></a>
+              <hr className="dark:opacity-40 opacity-70 -mx-4" />
+              <ReactMarkdown
+                rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeSanitize]}
+                remarkPlugins={[remarkGfm, remarkGemoji]}
+                components={{
+                  h1: ({ node, ...props }) => (
+                    <>
+                      <h1 className="text-3xl my-2" {...props} />
+                      <hr className="my-2 opacity-40" />
+                    </>
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <>
+                      <h2 className="text-2xl my-2" {...props} />
+                      <hr className="my-2 opacity-40" />
+                    </>
+                  ),
+                  h3: ({ node, ...props }) => <h3 className="text-xl" {...props} />,
+                  h4: ({ node, ...props }) => <h4 className="text-lg" {...props} />,
+                  code: ({ node, ...props }) => <span className="whitespace-pre-wrap"><code {...props} className="font-mono p-1 px-2 rounded-md bg-gray-400 bg-opacity-50" /></span>,
+                  ol: ({ node, ...props }) => <ol className="px-6 list-[number] list-inside" {...props} />,
+                  ul: ({ node, ...props }) => <ul className="px-6 list-disc list-inside" {...props} />,
+                  li: ({ node, ...props }) => <li className="my-2" {...props} />,
+                  p: ({ node, ...props }) => <p className="my-3" {...props} />,
+                  pre: ({ node, ...props }) => <pre className="p-2 px-4 bg-opacity-50 rounded-md bg-gray-400" {...props} />,
+                  img: ({ node, ...props }) => (
+                    <MdImage
+                      imageProps={props}
+                      owner={project.owner.name}
+                      repo={project.name}
+                    />
+                  ),
+                  a: ({
+                    node, href, children, ...props
+                  }) => <a href={href} target="_blank" rel="noopener noreferrer" className="dark:text-blue-400 hover:underline text-blue-600" {...props}>{children}</a>,
+                }}
+              >
+                {project.readme.text}
+              </ReactMarkdown>
+            </div>
+            )}
           </div>
-          )}
           <div className="h-full">
             <div className="flex top-0 w-full justify-start m-auto md:mx-4 left-0 flex-col">
               <div className="flex flex-row justify-around">
-                {project.homepageUrl ? <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={project.homepageUrl}><HiOutlineExternalLink size={24} /></a> : null}
-                <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><FaGithub size={24} /></a>
+                {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={project.homepageUrl}><HiOutlineExternalLink size={24} /></a>}
+                {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><FaGithub size={24} /></a>}
               </div>
               <p className="mx-auto my-4">{project.description}</p>
               <div className="flex flex-wrap flex-row flex-1 justify-center md:justify-start">
