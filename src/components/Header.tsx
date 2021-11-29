@@ -10,6 +10,7 @@ import { HiMoon } from '@react-icons/all-files/hi/HiMoon';
 import { Squash } from 'hamburger-react';
 import colors from 'tailwindcss/colors';
 import Headroom from 'react-headroom';
+import { useMediaQuery } from 'react-responsive';
 import NavLink from './NavLink';
 
 // Used for the navbar
@@ -90,6 +91,8 @@ const Header = () => {
   const [prevY, setPrevY] = useState(0);
   const [scrollingUp, setScrollingUp] = useState(false);
 
+  const md = useMediaQuery({ query: '(min-width:768px)' });
+
   // toggle the responsive nav
   const toggle = useCallback(() => {
     if (!pinned) return;
@@ -155,7 +158,7 @@ const Header = () => {
                 maxHeight: pinned ? h : '0',
                 zIndex: -1,
                 backgroundColor: 'inherit',
-                borderBottom: topOfPage && `1px solid ${colors.gray[400]}`,
+                borderBottom: md && topOfPage && `1px solid ${colors.gray[400]}`,
               }}
               className={`overflow-hidden ${topOfPage ? '' : 'shadow-2xl'} block opacity-100 mt-16 z-50 w-full top-1 right-0 left-0`}
             >

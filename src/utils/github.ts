@@ -38,6 +38,7 @@ export const getAllProjects = async (user: string = 'ztcollazo') => {
                 }
                 name
                 description
+                isPrivate
                 homepageUrl
                 url
                 openGraphImageUrl
@@ -75,6 +76,7 @@ export const getProject = async (name: string, owner = 'ztcollazo', includeReadm
           avatarUrl
           url
         }
+        isPrivate
         name
         description
         homepageUrl

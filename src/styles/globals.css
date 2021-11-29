@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
+@tailwind screens;
 
 html {
   scrollbar-width: thin;
@@ -89,4 +90,16 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
 
 .slide-top-clip-path {
   transform: skewY(-3deg)
+}
+
+.card {
+  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+  padding: 20px;
+}
+
+
+.children-centered > * {
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

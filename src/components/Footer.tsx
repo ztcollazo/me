@@ -14,6 +14,9 @@ const Footer = () => (
     {' '}
 &nbsp; &#183; &nbsp;
     <FooterLink href="/about">About</FooterLink>
+    {' '}
+&nbsp; &#183; &nbsp;
+    <FooterLink href="/projects">Projects</FooterLink>
   </footer>
 );
 
