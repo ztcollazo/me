@@ -7,10 +7,10 @@ const About = () => (
     <Head>
       <title>About | Zachary Collazo</title>
     </Head>
-    <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 p-2 md:p-5 font-mono">
+    <main className="flex flex-col min-h-[77vh] pb-0 md:pb-0 mb-16 bottom-0 top-0 flex-wrap flex-1 p-2 md:p-5 font-mono">
       <Typist
-        avgTypingDelay={10}
-        stdTypingDelay={5}
+        avgTypingDelay={2}
+        stdTypingDelay={2}
         startDelay={10}
         cursor={{ show: false }}
       >

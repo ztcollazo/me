@@ -29,8 +29,8 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
-  height: 3px;
+  width: 4px;
+  height: 4px;
 }
   
   /* Track */
@@ -40,7 +40,7 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply dark:bg-gray-200 bg-gray-900;
+  @apply dark:bg-gray-200 bg-gray-900 rounded-full;
 }
 
 .animated-underline {
@@ -102,4 +102,52 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
   margin: auto;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.scroll-snap-y {
+  --tw-scroll-snap-type: proximity;
+  scroll-snap-type: y var(--tw-scroll-snap-type);
+}
+
+.scroll-snap-start > * {
+  scroll-snap-align: start;
+}
+
+.chip-list {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: auto;
+}
+@media (max-width: 768px) {
+  .chip-list::before {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    content: '\2588';
+    font-size: 16px;
+    color: transparent;
+    width: 1rem;
+    background-image: linear-gradient(to right, white, transparent);
+  }
+
+  .chip-list::after {
+    position: sticky;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: '\2588';
+    font-size: 16px;
+    color: transparent;
+    width: 1rem;
+    background-image: linear-gradient(to left, white, transparent);
+  }
+}
+
+.chip-list::-webkit-scrollbar {
+  display: none;
 }

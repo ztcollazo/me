@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <ParallaxProvider>
-      <div>
+      <div className="scroll-snap-y scroll-snap-start">
         <Head>
           <title>Home | Zachary Collazo</title>
         </Head>
@@ -36,7 +36,7 @@ const Home = () => {
                 <Fade
                   bottom
                   onReveal={() => {
-                    setInterval(() => setShouldJump(true), 350);
+                    setInterval(() => setShouldJump(true), 450);
                     setMad(true);
                   }}
                 >
@@ -47,7 +47,7 @@ const Home = () => {
                 <Zoom bottom when={mad}>
                   <h2 className="md:text-6xl font-extralight text-2xl sm:text-4xl p-2 md:p-4">my name is</h2>
                 </Zoom>
-                <LightSpeed left delay={1000} spy={had}>
+                <LightSpeed left delay={1200} spy={had}>
                   <RoughNotation animationDelay={975 + 500} iterations={2} animate show={had} animationDuration={1100} strokeWidth={7} color={randomColor(dark)} type="box">
                     <h1 className="md:text-9xl sm:text-6xl text-5xl font-extralight">Zachary Collazo</h1>
                   </RoughNotation>
