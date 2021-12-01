@@ -135,6 +135,10 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
     background-image: linear-gradient(to right, white, transparent);
   }
 
+  html.dark .chip-list::before {
+    background-image: linear-gradient(to right, theme('colors.gray.700'), transparent);
+  }
+
   .chip-list::after {
     position: sticky;
     top: 0;
@@ -145,6 +149,10 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
     color: transparent;
     width: 1rem;
     background-image: linear-gradient(to left, white, transparent);
+  }
+
+  html.dark .chip-list::after {
+    background-image: linear-gradient(to right, transparent, theme('colors.gray.700'));
   }
 }
 
