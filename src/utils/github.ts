@@ -23,12 +23,12 @@ export const formatRepo = (repo: any) => {
   });
 };
 
-export const getAllProjects = async (user: string = 'ztcollazo') => {
+export const getAllProjects = async (user: string = 'ztcollazo', limit: number = 20) => {
   const { user: u } = await graphql<{ user: any }>(
     `
       query topRepositories($user: String!) {
         user(login: $user) {
-          repositories(first: 20, orderBy: { direction: DESC, field: STARGAZERS }, affiliations: [OWNER, COLLABORATOR]) {
+          repositories(first: ${limit}, orderBy: { direction: DESC, field: STARGAZERS }, affiliations: [OWNER, COLLABORATOR]) {
             edges {
               node {
                 owner {

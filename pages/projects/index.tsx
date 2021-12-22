@@ -5,7 +5,7 @@ import Project from '@/components/Project';
 import { getAllProjects } from '@/utils/github';
 
 const Projects = ({ projects }) => {
-  const md = useMediaQuery({ query: '(min-width:768px)' });
+  const md = useMediaQuery({ minWidth: 768 });
 
   return (
     <>

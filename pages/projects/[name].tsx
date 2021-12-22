@@ -65,7 +65,7 @@ const MdImage: FC<{
 };
 
 const Project = ({ project, error }) => {
-  const md = useMediaQuery({ query: '(min-width: 768px)' });
+  const md = useMediaQuery({ minWidth: 768 });
 
   return (
     <>
@@ -139,7 +139,7 @@ const Project = ({ project, error }) => {
             <div className="h-full">
               <div className="flex top-0 w-full justify-start m-auto md:mx-4 left-0 flex-col">
                 <div className="flex flex-row justify-around">
-                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={project.homepageUrl}><HiOutlineExternalLink size={24} /></a>}
+                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
                   {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><FaGithub size={24} /></a>}
                 </div>
                 <p className="mx-auto my-4">{project.description}</p>

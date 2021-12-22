@@ -1,6 +1,6 @@
 import colors from 'tailwindcss/colors';
 
-export const random = (min, max: number, div: number = 1) => {
+export const random = (min: number, max: number, div: number = 1) => {
   const num = Math.floor((Math.random() * max) / div) * div;
   if (num >= min) {
     return num;
@@ -13,5 +13,5 @@ const cols = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'teal', 'cya
 export const randomColor = (dark: boolean): string => colors[
   cols[random(0, cols.length)]
 ][
-  random(dark ? 300 : 200, dark ? 800 : 600, 100)
+  random(300, dark ? 800 : 600, 100)
 ];

@@ -92,6 +92,10 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
   transform: skewY(-3deg)
 }
 
+.slide-bottom-clip-path {
+  transform: skewY(3deg)
+}
+
 .card {
   box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
   padding: 20px;
@@ -158,4 +162,29 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
 
 .chip-list::-webkit-scrollbar {
   display: none;
+}
+
+.hover-highlight {
+  position: relative;
+  z-index: 1;
+  padding: 0px 2px;
+}
+
+.hover-highlight::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -0.1em;
+  right: -0.1em;
+  background-color: var(--hh-color);
+  transform-origin: bottom center;
+  transform: scaleY(0.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.hover-highlight:hover::before {
+  transform: scaleY(1);
+  opacity: var(--hh-opacity);
 }
