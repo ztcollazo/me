@@ -93,7 +93,7 @@ const Header = () => {
   // toggle the responsive nav
   const toggle = useCallback(() => {
     if (!pinned) return;
-    setH(h === '0' || h === '0px' ? '275px' : '0');
+    setH(h === '0' || h === '0px' ? '400px' : '0');
     setShouldOpen(!shouldOpen);
     if (open) {
       setTimeout(() => setOpen(!open), 400);
@@ -130,8 +130,8 @@ const Header = () => {
     <Headroom disable={(topOfPage || inView) && !scrollingUp} onUnpin={() => setPinned(false)} onPin={() => setPinned(true)} className="w-full left-0 right-0 bg-white dark:bg-gray-900 top-0" wrapperStyle={{ marginBottom: 10 }}>
       <div ref={ref} style={{ borderBottom: inView && !open && `1px solid ${colors.gray[400]}` }} className={`opacity-90${!open && !inView && pinned ? ' shadow-2xl' : ''} top-0 left-0 bg-white dark:bg-gray-900 p-5 pt-4 pb-4 w-full right-0 dark:text-white text-black`}>
         <Link passHref href="/">
-          <a className="text-center ml-8 z-[-1] md:ml-auto md:text-left">
-            <Image src={`/me-${theme}.png`} alt="{Z}" width={40} height={40} />
+          <a className="text-center min-h-[max-content] md:text-left">
+            <Image src={`/me-${theme}.png`} alt="" className="z-[500]" width={40} height={40} />
           </a>
         </Link>
         <nav className="float-right hidden md:block absolute top-1 m-0 p-5 pb-4 right-0">
@@ -158,10 +158,10 @@ const Header = () => {
               }}
               className={`overflow-hidden ${topOfPage ? '' : 'shadow-2xl'} block opacity-100 mt-16 w-full top-1 right-0 left-0`}
             >
-              <PageLink onClick={toggle} className="w-full mx-4 block" href="/">Home</PageLink>
-              <PageLink onClick={toggle} className="w-full mx-4 block" href="/about">About</PageLink>
-              <PageLink onClick={toggle} className="w-full mx-4 block" href="/projects">Projects</PageLink>
-              <span className="w-full flex flex-row justify-around p-5">
+              <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/">Home</PageLink>
+              <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/about">About</PageLink>
+              <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/projects">Projects</PageLink>
+              <span className="max-w-full flex flex-row justify-around p-5">
                 <span>{theme === 'dark' ? 'Disable dark mode' : 'Enable dark mode'}</span>
                 <ThemeSwtich />
               </span>

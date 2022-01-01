@@ -5,7 +5,7 @@ import { animateScroll as scroll } from 'react-scroll';
 const BackToTop = () => {
   const [atTop, setAtTop] = useState(true);
 
-  const handleScroll = () => setAtTop(window.scrollY < 100);
+  const handleScroll = () => setAtTop(window.scrollY < 200);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

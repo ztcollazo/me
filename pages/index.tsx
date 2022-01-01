@@ -11,7 +11,7 @@ import { HiOutlineChevronDown } from '@react-icons/all-files/hi/HiOutlineChevron
 import Link from 'next/link';
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { useMediaQuery } from 'react-responsive';
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
+import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineMail } from '@react-icons/all-files/hi/HiOutlineMail';
 import Project from '@/components/Project';
 import { randomColor } from '@/utils/random';
@@ -66,9 +66,9 @@ const Home = ({ projects }) => {
             </main>
           </Parallax>
         </div>
-        <div className="dark:bg-gray-700 h-[20vh] relative left-0 right-0 -top-32 slide-top-clip-path bg-gray-300 w-full" />
+        <div className="dark:bg-gray-600 h-[20vh] relative left-0 right-0 -top-32 slide-top-clip-path bg-gray-300 w-full" />
         <Element name="rest">
-          <div className="-mt-56 mb-20 min-h-[50vh] text-center relative dark:bg-gray-700 md:p-20 sm:p-10 p-5 bg-gray-300 flex flex-col">
+          <div className="-mt-56 mb-20 min-h-[50vh] z-50 text-center relative dark:bg-gray-600 md:p-20 sm:p-10 p-5 bg-gray-300 flex flex-col">
             <div className="flex justify-around flex-1 flex-wrap-reverse md:flex-nowrap">
               <Fade collapse opposite top delay={600}>
                 <p
@@ -130,13 +130,15 @@ const Home = ({ projects }) => {
             </div>
           </div>
         </Element>
-        <div className="dark:bg-gray-700 h-[20vh] relative left-0 right-0 -top-24 md:-top-32 md:-mt-1 slide-bottom-clip-path bg-gray-300 w-full" />
-        <Element name="social">
-          <div className="relative text-center md:w-1/2 m-auto mb-20 p-4 flex justify-center gap-8 items-center">
-            <p className="sm:text-4xl text-2xl">Find me on</p>
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/ztcollazo" aria-label="Github"><FaGithub size={md ? 32 : 24} /></a>
-            <a target="_blank" rel="noopener noreferrer" href="mailto:ztcollazo08@gmail.com" aria-label="Github"><HiOutlineMail size={md ? 32 : 24} /></a>
-          </div>
+        <div className="dark:bg-gray-600 h-[20vh] relative left-0 right-0 -top-24 md:-top-32 md:-mt-1 slide-bottom-clip-path bg-gray-300 w-full" />
+        <Element name="social" className="mt-24">
+          <Parallax y={[-200, 200]}>
+            <div className="text-center relative md:w-1/2 m-auto mb-20 p-4 flex justify-center gap-8 items-center">
+              <p className="sm:text-4xl text-2xl">Find me on</p>
+              <a target="_blank" rel="noopener noreferrer" href="https://github.com/ztcollazo" aria-label="Github"><RiGithubLine size={md ? 32 : 24} /></a>
+              <a target="_blank" rel="noopener noreferrer" href="mailto:ztcollazo08@gmail.com" aria-label="Github"><HiOutlineMail size={md ? 32 : 24} strokeWidth={2} /></a>
+            </div>
+          </Parallax>
         </Element>
       </div>
     </ParallaxProvider>

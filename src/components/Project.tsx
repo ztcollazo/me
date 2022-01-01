@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
+import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink';
 import Topic from './Topic';
 import nameFor from '@/utils/name-for';
@@ -19,7 +19,7 @@ const Project: FC<{ project: any }> = ({ project }) => (
       </Link>
       <span className="flex flex-col">
         {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="inline-block m-2" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={18} /></a>}
-        {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="inline-block m-2" href={project.url}><FaGithub size={18} /></a>}
+        {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="inline-block m-2" href={project.url}><RiGithubLine size={18} /></a>}
       </span>
     </div>
     <div className="flex flex-row md:flex-wrap chip-list justify-start">

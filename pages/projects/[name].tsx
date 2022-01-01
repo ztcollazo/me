@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/jsx-props-no-spreading */
 import Head from 'next/head';
-import { FaGithub } from '@react-icons/all-files/fa/FaGithub';
+import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkGemoji from 'remark-gemoji';
 import rehypeRaw from 'rehype-raw';
-import rehypeHighlight from 'rehype-highlight';
 import rehypeSanitize from 'rehype-sanitize';
 import { FC, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -96,7 +95,7 @@ const Project = ({ project, error }) => {
                 <a target="_blank" rel="noopener noreferrer" href={project.readme.url}><h4 className="text-lg hover:underline mb-4 dark:text-gray-300">Project Readme</h4></a>
                 <hr className="dark:opacity-40 opacity-70 -mx-4" />
                 <ReactMarkdown
-                  rehypePlugins={[rehypeHighlight, rehypeRaw, rehypeSanitize]}
+                  rehypePlugins={[rehypeRaw, rehypeSanitize]}
                   remarkPlugins={[remarkGfm, remarkGemoji]}
                   components={{
                     h1: ({ node, ...props }) => (
@@ -140,7 +139,7 @@ const Project = ({ project, error }) => {
               <div className="flex top-0 w-full justify-start m-auto md:mx-4 left-0 flex-col">
                 <div className="flex flex-row justify-around">
                   {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
-                  {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><FaGithub size={24} /></a>}
+                  {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><RiGithubLine size={24} /></a>}
                 </div>
                 <p className="mx-auto my-4">{project.description}</p>
                 <div className="flex flex-wrap flex-row flex-1 justify-center md:justify-start">
