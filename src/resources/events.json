@@ -1,0 +1,86 @@
+[
+  {
+    "year": 2021,
+    "description": "Started rewriting my first big software project, BookWyrm, in Ruby on Rails."
+  },
+  {
+    "year": 2021,
+    "description": "Scored a 1270 on my SAT (yeah, in eigth grade), with a 590 on math and a 680 on language arts."
+  },
+  {
+    "year": 2021,
+    "description": "Started working on a project with my uncle for travel recommendations and guides."
+  },
+  {
+    "year": 2021,
+    "description": "Wrote a dashboard in four weeks for my family to keep track of garden production, weather, eggs, and more using Electron, React, and TypeScript."
+  },
+  {
+    "year": 2021,
+    "description": "Finished writing my first big project, BookWyrm."
+  },
+  {
+    "year": 2020,
+    "description": "Started experimenting with a Raspberry Pi."
+  },
+  {
+    "year": 2020,
+    "description": "Started homeschooling."
+  },
+  {
+    "year": 2020,
+    "description": "Started my first big project, BookWyrm, for book reviews. I wrote it in React and JavaScript"
+  },
+  {
+    "year": 2020,
+    "description": "Started Zooming with my uncle every week to learn coding (mostly frontend development)."
+  },
+  {
+    "year": 2020,
+    "description": "Did small prep course with Fullstack Academy for web development basics."
+  },
+  {
+    "year": 2020,
+    "description": "Did the Khan Academy courses on software development."
+  },
+  {
+    "year": 2020,
+    "description": "Started to get into coding with Scratch and Code.org."
+  },
+  {
+    "year": 2019,
+    "description": "Started working on a website using a drag and drop builder for National History Day."
+  },
+  {
+    "year": 2019,
+    "description": "Joined the school robotics club. The sixth graders had a different robot than the seventh and eighth, and we had no idea what we were doing."
+  },
+  {
+    "year": 2019,
+    "description": "Started attending Manchester Middle School in the Center-based Gifted program."
+  },
+  {
+    "year": 2018,
+    "description": "Started attending Winterpock Elementary School in the Center-based Gifted program."
+  },
+  {
+    "year": 2018,
+    "description": "Won the ACSI math olympics in the computational field for fourth graders."
+  },
+  {
+    "year": 2017,
+    "description": "Joined the lego robotics club at my school and got my first real exposure to modern technology."
+  },
+  {
+    "year": 2017,
+    "description": "Won the ACSI math olympics in the computational field for third graders."
+  },
+  {
+    "year": 2015,
+    "description": "Won second place in the ACSI spelling bee."
+  },
+  {
+    "year": 2013,
+    "description": "Started attending Richmond Christian School, where my dad was principle."
+  }
+]

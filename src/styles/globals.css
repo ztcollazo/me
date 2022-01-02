@@ -65,6 +65,22 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
   transform: scaleX(1);
 }
 
+html.dark .not-animated-underline {
+  color: white;
+}
+
+html.light .not-animated-underline {
+  color: black;
+}
+
+.not-animated-underline::before {
+  transform: scaleX(0) !important;
+}
+
+.not-animated-underline:hover::before {
+  transform: scaleX(0) !important;
+}
+
 .active-underline {
   position: relative;
   border-bottom: none;
@@ -180,11 +196,16 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
   right: -0.1em;
   background-color: var(--hh-color);
   transform-origin: bottom center;
-  transform: scaleY(0.1);
-  transition: all 0.1s ease-in-out;
+  transform: scaleY(0.05);
+  transition: all 0.2s ease-in-out;
 }
 
 .hover-highlight:hover::before {
   transform: scaleY(1);
   opacity: var(--hh-opacity);
+}
+
+.circle {
+  -webkit-clip-path: circle(25% at 50% 50%);
+  clip-path: circle(50% at 50% 50%)
 }
