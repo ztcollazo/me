@@ -51,7 +51,7 @@ const ResumeItem = ({ year, description, lastItem }) => {
         {!lastItem && <div className="h-[50px] border-2 dark:border-gray-600 border-gray-300 w-7 -my-1" />}
       </div>
       <Slide left in={inView}>
-        <div className="flex flex-col justify-center -mt-10">{description}</div>
+        <div className="flex flex-col self-center p-4 rounded-lg border-2 border-gray-300 h-[min-content] justify-center -mt-10">{description}</div>
       </Slide>
     </>
   );

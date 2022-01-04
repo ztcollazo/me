@@ -146,12 +146,12 @@ html.light .not-animated-underline {
   .chip-list::before {
     position: sticky;
     top: 0;
-    left: 0;
+    left: -0.2em;
     bottom: 0;
-    content: '\2588';
+    content: '\00A0\00A0';
     font-size: 16px;
     color: transparent;
-    width: 1rem;
+    width: 2rem;
     background-image: linear-gradient(to right, white, transparent);
   }
 
@@ -162,12 +162,12 @@ html.light .not-animated-underline {
   .chip-list::after {
     position: sticky;
     top: 0;
-    right: 0;
+    right: -0.2em;
     bottom: 0;
-    content: '\2588';
+    content: '\00A0\00A0';
     font-size: 16px;
     color: transparent;
-    width: 1rem;
+    width: 2rem;
     background-image: linear-gradient(to left, white, transparent);
   }
 

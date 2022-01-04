@@ -23,12 +23,16 @@ const About = () => (
           and apps and whatever else you want me to make.
           I strive to learn everything I can get my hands on (which is a lot).
           I&#39;ve always had an inclination to math and science, which has led me
-          to an interest in technology. Like I said, I love to learn, so
-          if you have a suggestion for this website, please open an issue at&nbsp;
-          <a style={{ transitionDuration: '.5s' }} href="//github.com/ztcollazo/me" className="font-bold hover:translate-x-[1px] transition-transform inline-block">this project&#39;s github repo.</a>
+          to an interest in technology.
+          <br />
+          <br />
+          I have about two years of experience with hardware and software development, but
+          I tend to work on the software more. Most of my knowledge comes from&nbsp;
+          <a className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href="https://github.com/ericcecchi">my uncle</a>
+          , who is a full-stack developer for Arcadia.
         </div>
         <div className="text-lg p-2 md:p-4 md:text-2xl">
-          You can also check out some of my other
+          Feel free to check out some of my
           <Link passHref href="/projects">
             <a style={{ transitionDuration: '.5s' }} className="font-bold inline-block hover:translate-x-[1px] transition-transform">&nbsp;projects.</a>
           </Link>
