@@ -155,6 +155,12 @@ const Project = ({ project, error }) => {
 };
 export const getServerSideProps = async (context: any) => {
   try {
+    if (context.params.name === 'ztcollazo') {
+      return {
+        notFound: true,
+      };
+    }
+
     const project = await getProject(context.params.name, context.params.name === 'destination-app' ? 'ericcecchi' : 'ztcollazo');
 
     return {
@@ -164,6 +170,12 @@ export const getServerSideProps = async (context: any) => {
       },
     };
   } catch (error) {
+    if (error.response.errors.some((err) => err.type === 'NOT_FOUND')) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       props: {
         project: null,
