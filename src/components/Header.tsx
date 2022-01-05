@@ -64,7 +64,7 @@ const ThemeSwtich = () => {
       offColor="#000"
       checkedIcon={<div style={iconStyle}><HiMoon color="#000" /></div>}
       uncheckedIcon={<div style={iconStyle}><HiSun color="#fff" /></div>}
-      id="material-switch"
+      id="toggle-theme"
       handleDiameter={30}
       width={48}
       height={23}
@@ -129,7 +129,7 @@ const Header = () => {
     <Headroom disable={(topOfPage || inView) && !scrollingUp} onUnpin={() => setPinned(false)} onPin={() => setPinned(true)} className="w-full left-0 right-0 bg-white dark:bg-gray-900 top-0" wrapperStyle={{ marginBottom: 10 }}>
       <div ref={ref} style={{ borderBottom: inView && !open && `1px solid ${colors.gray[400]}` }} className={`opacity-90${!open && !inView && pinned ? ' shadow-2xl' : ''} top-0 left-0 bg-white dark:bg-gray-900 p-5 pt-4 pb-4 w-full right-0 dark:text-white text-black`}>
         <Link passHref href="/">
-          <a className="text-center min-h-[max-content] md:text-left">
+          <a aria-label="home" className="text-center min-h-[max-content] md:text-left">
             <Image src={`/me-${theme}.png`} alt="" className="z-[500]" width={40} height={40} />
           </a>
         </Link>
@@ -146,6 +146,7 @@ const Header = () => {
               color="currentColor"
               toggle={toggle}
               toggled={shouldOpen}
+              label="Toggle nav menu"
             />
           </button>
           <div style={{ backgroundColor: 'inherit' }} className="mt-0 pt-0">

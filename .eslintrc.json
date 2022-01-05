@@ -40,12 +40,7 @@
             }
         ],
         "import/extensions": [
-            2,
-            "never",
-            {
-                ".tsx": "never",
-                ".json": "never"
-            }
+            0 // Bad solution, but it is the only thing that works
         ],
         "jsx-a11y/anchor-is-valid": [
             "error", 

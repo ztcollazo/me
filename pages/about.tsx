@@ -1,12 +1,14 @@
 import Typist from 'react-typist';
 import Link from 'next/link';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 const About = () => (
   <div className="p-10">
     <Head>
       <title>About | Zachary Collazo</title>
     </Head>
+    <NextSeo title="About" openGraph={{ title: 'About | Zachary Collazo' }} />
     <main className="flex flex-col min-h-[77vh] pb-0 md:pb-0 mb-16 bottom-0 top-0 flex-wrap flex-1 p-2 md:p-5 font-mono">
       <Typist
         avgTypingDelay={2}

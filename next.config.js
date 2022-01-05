@@ -1,14 +1,12 @@
 const withPWA = require("next-pwa")
 const withImages = require("next-images");
 const withPlugins = require("next-compose-plugins");
-const prod = process.env.NODE_ENV === 'production'
 
 module.exports = withPlugins([withPWA, withImages], {
   swcMinify: true,
   reactStrictMode: true,
   pwa: {
     dest: 'public',
-    disable: !prod
   },
   dynamicAssetPrefix: true,
   images: {

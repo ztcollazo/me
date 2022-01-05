@@ -10,6 +10,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import { FC, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { NextSeo } from 'next-seo';
 import Topic from '@/components/Topic';
 import { getProject } from '@/utils/github';
 import nameFor from '@/utils/name-for';
@@ -75,6 +76,7 @@ const Project = ({ project, error }) => {
           | Zachary Collazo
         </title>
       </Head>
+      <NextSeo title={nameFor(project?.name ?? '')} openGraph={{ title: `${((x) => (x ? `${x} | Zachary Collazo` : 'Zachary Collazo'))(nameFor(project?.name ?? ''))}` }} />
       {!error ? (
         <main className="flex flex-col min-h-[77vh] bottom-0 top-0 mb-16 md:pb-0 flex-wrap flex-1 p-8 md:p-16 font-mono">
           <h1 className="font-bold text-3xl text-center md:text-8xl mb-8 sm:text-5xl">{nameFor(project.name)}</h1>

@@ -8,8 +8,8 @@ import {
 } from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import { Slide } from 'react-reveal';
-// @ts-ignore
-import events from '@/resources/events';
+import { NextSeo } from 'next-seo';
+import events from '@/resources/events.json';
 
 const ResumeItem = ({ year, description, lastItem }) => {
   const [inView, setInView] = useState(false);
@@ -62,6 +62,7 @@ const Resume = () => (
     <Head>
       <title>Resume | Zachary Collazo</title>
     </Head>
+    <NextSeo title="Resume" openGraph={{ title: 'Resume | Zachary Collazo' }} />
     <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 p-16 font-mono">
       <h1 className="font-bold md:text-8xl mb-8 text-5xl">Resume</h1>
       <TransitionGroup>

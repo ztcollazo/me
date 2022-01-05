@@ -13,6 +13,7 @@ import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { useMediaQuery } from 'react-responsive';
 import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineMail } from '@react-icons/all-files/hi/HiOutlineMail';
+import { NextSeo } from 'next-seo';
 import Project from '@/components/Project';
 import { randomColor } from '@/utils/random';
 import { getAllProjects } from '@/utils/github';
@@ -34,6 +35,7 @@ const Home = ({ projects }) => {
         <Head>
           <title>Home | Zachary Collazo</title>
         </Head>
+        <NextSeo title="Home" />
         <div id="parallax" className="flex py-10 ml-4 md:ml-0 md:p-0 md:mr-8 -mt-48 mb-48 flex-row">
           <Parallax className="w-full" y={[-60, 60]}>
             <main style={{ zIndex: -1 }} className="w-full text-center flex flex-col justify-center m-auto md:min-h-screen min-h-[60vh] pt-16">

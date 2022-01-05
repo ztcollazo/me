@@ -1,0 +1,16 @@
+{
+  "name": "Zachary Collazo",
+  "short_name": "Zachary Collazo",
+  "theme_color": "#4b5563",
+  "background_color": "#111827",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "size": "100x100",
+      "src": "/icon.png",
+      "type": "image/png"
+    }
+  ]
+}
