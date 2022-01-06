@@ -16,7 +16,7 @@ const Projects = ({ projects }) => {
       <NextSeo title="Projects" openGraph={{ title: 'Projects | Zachary Collazo' }} />
       <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 p-16 font-mono">
         <h1 className="font-bold md:text-8xl mb-8 text-5xl">Projects</h1>
-        <ul style={{ flex: '1 1 396px' }} className="flex flex-row gap-4 max-w-full children-centered flex-wrap">
+        <ul className="flex flex-row gap-4 max-w-full children-centered flex-wrap">
           {
             projects.map((p) => <Project key={p.name} project={p} />)
           }

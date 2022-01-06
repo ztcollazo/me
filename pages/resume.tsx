@@ -9,6 +9,8 @@ import {
 import { TransitionGroup } from 'react-transition-group';
 import { Slide } from 'react-reveal';
 import { NextSeo } from 'next-seo';
+import { HiOutlineDocument } from '@react-icons/all-files/hi/HiOutlineDocument';
+import { HiOutlineDocumentDownload } from '@react-icons/all-files/hi/HiOutlineDocumentDownload';
 import events from '@/resources/events.json';
 
 const ResumeItem = ({ year, description, lastItem }) => {
@@ -64,13 +66,80 @@ const Resume = () => (
     </Head>
     <NextSeo title="Resume" openGraph={{ title: 'Resume | Zachary Collazo' }} />
     <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 p-16 font-mono">
-      <h1 className="font-bold md:text-8xl mb-8 text-5xl">Resume</h1>
-      <TransitionGroup>
-        <div className="grid" style={{ gridTemplateColumns: '15% 85%' }}>
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-          {events.map((event, i) => <ResumeItem lastItem={i === events.length - 1} key={`${event.year} - ${event.description}`} {...event} />)}
+      <div className="flex items-center">
+        <h1 className="font-bold md:text-8xl mb-8 text-5xl">Resume</h1>
+        <a title="View PDF Resume" href="/resume.pdf" className="ml-5 mb-5" aria-label="View PDF version">
+          <HiOutlineDocument size={48} />
+        </a>
+        <a title="Download PDF Resume" href="/resume.pdf" download className="ml-5 mb-5" aria-label="View PDF version">
+          <HiOutlineDocumentDownload size={48} />
+        </a>
+      </div>
+      <div className="items-start justify-around flex flex-wrap">
+        <div style={{ flex: '1 1 45vw' }} className="mb-8 text-md">
+          <h2 className="font-bold md:text-4xl mb-8 text-2xl">Academics</h2>
+          <ul className="list-inside list-[circle]">
+            <li>
+              <b>Richmond Christian School,</b>
+              <i>&nbsp;(K-4th)</i>
+            </li>
+            <li>
+              <b>Winterpock Elementary School,</b>
+              <i>&nbsp;Center-Based Gifted (5th)</i>
+            </li>
+            <li>
+              <b>Manchester Middle School,</b>
+              <i>&nbsp;Center-Based Gifted(6th)</i>
+            </li>
+            <li>
+              <b>Homeschool,</b>
+              <i>&nbsp;(7th-present)</i>
+            </li>
+          </ul>
         </div>
-      </TransitionGroup>
+        <div style={{ flex: '1 1 45vw' }} className="mb-8 text-md">
+          <h2 className="font-bold md:text-4xl mb-8 text-2xl">Skills</h2>
+          <ul className="list-inside list-[circle]">
+            <li>
+              <b>HTML/CSS,</b>
+              <i>&nbsp;FreeCodeCamp Certified</i>
+            </li>
+            <li>
+              <b>JavaScript,</b>
+              <i>&nbsp;SoloLearn Certified</i>
+            </li>
+            <li>
+              <b>ReactJS,</b>
+              <i>&nbsp;Completing Certification</i>
+            </li>
+            <li>
+              <b>Other languages,</b>
+              <i>&nbsp;TypeScript, Ruby (and Ruby on Rails), Golang, Python, Bash, Zsh</i>
+            </li>
+            <li>
+              <b>3D Design/3D Printing</b>
+            </li>
+            <li>
+              <b>Raspberry Pi &amp; Linux</b>
+            </li>
+            <li>
+              <b>ProPresenter 6 &amp; 7</b>
+            </li>
+          </ul>
+        </div>
+        <div style={{ flex: '1 1 45vw' }}>
+          <a href="/resume.pdf"><b>View other categories on the PDF version.</b></a>
+        </div>
+      </div>
+      <div>
+        <h2 className="font-bold md:text-4xl mb-8 text-2xl">Timeline</h2>
+        <TransitionGroup>
+          <div className="grid" style={{ gridTemplateColumns: '15% 85%' }}>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            {events.map((event, i) => <ResumeItem lastItem={i === events.length - 1} key={`${event.year} - ${event.description}`} {...event} />)}
+          </div>
+        </TransitionGroup>
+      </div>
     </main>
   </>
 );

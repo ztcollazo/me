@@ -7,7 +7,7 @@ import Topic from './Topic';
 import nameFor from '@/utils/name-for';
 
 const Project: FC<{ project: any }> = ({ project }) => (
-  <li style={{ transitionDuration: '.5s' }} className="rounded-xl cursor-pointer w-full md:w-[396px] md:flex-grow flex flex-col card justify-between bg-white dark:bg-gray-700 hover:translate-x-[1px] hover:translate-y-[-1px] transition-transform">
+  <li style={{ transitionDuration: '.5s', flex: '1 1 390px' }} className="rounded-xl cursor-pointer w-full md:flex-grow flex flex-col card justify-between bg-white dark:bg-gray-700 hover:translate-x-[1px] hover:translate-y-[-1px] transition-transform">
     <div className="flex flex-row justify-between">
       <Link passHref href={`/projects/${project.name}`}>
         <a>
