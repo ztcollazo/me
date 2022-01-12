@@ -3,9 +3,8 @@ import Head from 'next/head';
 import { RoughNotation } from 'react-rough-notation';
 import { useTheme } from 'next-themes';
 import {
-  Fade, Zoom, LightSpeed,
+  Fade, Slide,
 } from 'react-reveal';
-import RubberBand from 'react-reveal/RubberBand';
 import { Link as ScrollLink, Element } from 'react-scroll';
 import { HiOutlineChevronDown } from '@react-icons/all-files/hi/HiOutlineChevronDown';
 import Link from 'next/link';
@@ -14,20 +13,24 @@ import { useMediaQuery } from 'react-responsive';
 import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineMail } from '@react-icons/all-files/hi/HiOutlineMail';
 import { NextSeo } from 'next-seo';
+import dynamic from 'next/dynamic';
 import Project from '@/components/Project';
 import { randomColor } from '@/utils/random';
-import { getAllProjects } from '@/utils/github';
+import { getProject } from '@/utils/github';
+
+const Canvas = dynamic(() => import('@react-three/fiber').then((fiber) => fiber.Canvas), { ssr: false });
+const TorusKnot = dynamic(import('@/components/TorusKnot'), { ssr: false });
 
 const Home = ({ projects }) => {
   // First animation done, second animation done, etc.
   const [fad, setFad] = useState(false);
   const [sad, setSad] = useState(false);
-  const [shouldJump, setShouldJump] = useState(false);
 
   const { theme } = useTheme();
   const dark = theme === 'dark';
 
   const md = useMediaQuery({ minWidth: 768 });
+  const lg = useMediaQuery({ minWidth: 1024 });
 
   return (
     <ParallaxProvider>
@@ -36,31 +39,36 @@ const Home = ({ projects }) => {
           <title>Home | Zachary Collazo</title>
         </Head>
         <NextSeo title="Home" />
-        <div id="parallax" className="flex py-10 ml-4 md:ml-0 md:p-0 md:mr-8 -mt-48 mb-48 flex-row">
-          <Parallax className="w-full" y={[-60, 60]}>
-            <main style={{ zIndex: -1 }} className="w-full text-center flex flex-col justify-center m-auto md:min-h-screen min-h-[60vh] pt-16">
-              <div id="jumbotron" className="flex text-center relative md:p-20 md:pr-20 pr-16 p-10 items-stretch justify-between w-full flex-col m-auto font-mono">
-                <Fade
-                  bottom
-                  onReveal={() => {
-                    setInterval(() => setShouldJump(true), 450);
-                    setFad(true);
-                  }}
-                >
-                  <RubberBand spy={shouldJump} onReveal={() => setSad(true)}>
-                    <h1 className="md:text-[15rem] font-semibold text-7xl sm:text-9xl py-4">Hello</h1>
-                  </RubberBand>
-                </Fade>
-                <Zoom bottom when={fad}>
-                  <h2 className="md:text-6xl font-extralight text-2xl sm:text-4xl p-2 md:p-4">my name is</h2>
-                </Zoom>
-                <LightSpeed left delay={1200} spy={sad}>
-                  <RoughNotation animationDelay={975 + 500} iterations={2} animate show={sad} animationDuration={1100} strokeWidth={7} color={randomColor(dark)} type="box">
-                    <h1 className="md:text-9xl sm:text-6xl text-5xl font-extralight">Zachary Collazo</h1>
-                  </RoughNotation>
-                </LightSpeed>
+        <div id="parallax" className="flex py-10 ml-4 md:ml-0 md:p-0 md:mr-8 -mt-20 mb-28 flex-row">
+          <Parallax className="w-full" y={[-30, 30]}>
+            <main style={{ zIndex: -1 }} className="w-full flex flex-col -mt-10 justify-center m-auto md:min-h-screen min-h-[60vh] pt-16">
+              <div className="flex justify-between flex-wrap">
+                <div style={{ flex: '1 1 45%' }} id="jumbotron" className="flex font-sans md:p-20 md:pr-20 pr-16 p-10 justify-between gap-4 w-full flex-col">
+                  <Slide left onReveal={() => setTimeout(() => setFad(true), 600)}>
+                    <h1 className="md:text-8xl font-extrabold text-6xl p-2">Hello</h1>
+                  </Slide>
+                  <Slide when={fad} left onReveal={() => setTimeout(() => setSad(true), 1000)}>
+                    <h2 className="md:text-4xl font-thin text-2xl p-2">my name is</h2>
+                  </Slide>
+                  <Slide left when={sad}>
+                    <RoughNotation animationDelay={975 + 500} iterations={2} animate show={sad} animationDuration={1100} strokeWidth={7} color={randomColor(dark)} type="box">
+                      <h1 className="md:text-7xl text-5xl p-2 font-extralight">Zachary Collazo</h1>
+                    </RoughNotation>
+                  </Slide>
+                </div>
+                {
+                  lg && (
+                    <div style={{ flex: '1 1 50%' }} className="w-full">
+                      <Canvas>
+                        <ambientLight />
+                        <pointLight position={[10, 10, 10]} />
+                        <TorusKnot />
+                      </Canvas>
+                    </div>
+                  )
+                }
               </div>
-              <div className="relative bottom-4 left-1/2 -ml-4 right-1/2 w-5 h-5">
+              <div className="relative md:bottom-[-1rem] bottom-4 left-1/2 -ml-4 right-1/2 w-5 h-5">
                 <ScrollLink smooth duration={500} to="rest">
                   <HiOutlineChevronDown color="currentColor" />
                 </ScrollLink>
@@ -71,23 +79,23 @@ const Home = ({ projects }) => {
         <div className="dark:bg-gray-600 h-[20vh] relative left-0 right-0 -top-32 slide-top-clip-path bg-gray-300 w-full" />
         <Element name="rest">
           <div className="-mt-56 mb-20 min-h-[50vh] z-50 text-center relative dark:bg-gray-600 md:p-20 sm:p-10 p-5 bg-gray-300 flex flex-col">
-            <div className="flex justify-around flex-1 flex-wrap-reverse md:flex-nowrap">
+            <div className="flex justify-around w-full flex-wrap-reverse xl:flex-nowrap">
               <Fade collapse opposite top delay={600}>
                 <p
-                  className="truncate overflow-hidden mt-2 md:text-left font-mono md:w-3/4 text-lg"
+                  className="truncate overflow-hidden mt-2 xl:text-left m-auto font-mono md:w-3/4 text-lg"
                   style={{
                     WebkitLineClamp: md ? 2 : 4, lineClamp: md ? 2 : 4, whiteSpace: 'pre-wrap', display: '-webkit-box', WebkitBoxOrient: 'vertical', MozBoxOrient: 'vertical',
                   }}
                 >
                   Hey there! I&#39;m a teenager from Chesterfield, VA. I like making cool websites
                   and apps and whatever else you want me to make.
-                  I strive to learn everything I can get my hands on (which is a lot).
+                  I strive to learn everything I can get my hands on.
                   I&#39;ve always had an inclination to math and science, which has led me
                   to an interest in technology.
                 </p>
               </Fade>
               <Fade opposite bottom delay={600}>
-                <div className="min-h-full flex items-center w-full text-center justify-center md:justify-start md:text-left md:ml-8">
+                <div className="min-h-full flex items-center w-full justify-center xl:justify-start xl:text-left xl:ml-8">
                   <h2 className="sm:text-4xl text-2xl">Learn more</h2>
                   <Link href="/about" passHref>
                     <a>
@@ -104,9 +112,9 @@ const Home = ({ projects }) => {
                 </div>
               </Fade>
             </div>
-            <div className="flex mt-20 justify-around flex-col md:grid" style={{ gridTemplateColumns: '33% 66%' }}>
+            <div className="flex flex-col mt-10 md:mt-0 xl:grid xl:grid-cols-2 justify-start" style={{ gridTemplateColumns: '33% 66%' }}>
               <Fade opposite bottom delay={600}>
-                <div className="min-h-full flex items-center justify-center md:justify-start md:p-5 md:mt-5">
+                <div className="min-h-full w-full flex items-center justify-center xl:justify-start md:p-5 md:mt-5">
                   <h2 className="sm:text-4xl text-2xl">Check out my</h2>
                   <Link href="/projects" passHref>
                     <a>
@@ -123,7 +131,7 @@ const Home = ({ projects }) => {
                 </div>
               </Fade>
               <Fade opposite top delay={600}>
-                <ul style={{ flex: '1 1 300px' }} className="flex gap-4 children-centered flex-wrap">
+                <ul className="flex gap-4 children-centered flex-wrap">
                   {
                     projects.map((p) => <Project key={p.name} project={p} />)
                   }
@@ -134,11 +142,11 @@ const Home = ({ projects }) => {
         </Element>
         <div className="dark:bg-gray-600 h-[20vh] relative left-0 right-0 -top-24 md:-top-32 md:-mt-1 slide-bottom-clip-path bg-gray-300 w-full" />
         <Element name="social" className="mt-24">
-          <Parallax y={[-200, 200]}>
+          <Parallax y={[-100, 100]}>
             <div className="text-center relative md:w-1/2 m-auto mb-20 p-4 flex justify-center gap-8 items-center">
               <p className="sm:text-4xl text-2xl">Find me on</p>
-              <a target="_blank" rel="noopener noreferrer" href="https://github.com/ztcollazo" aria-label="Github"><RiGithubLine size={md ? 32 : 24} /></a>
-              <a target="_blank" rel="noopener noreferrer" href="mailto:ztcollazo08@gmail.com" aria-label="Github"><HiOutlineMail size={md ? 32 : 24} strokeWidth={2} /></a>
+              <a className="rounded-full border-[1px] border-transparent hover:border-current p-2" target="_blank" rel="noopener noreferrer" href="https://github.com/ztcollazo" aria-label="Github"><RiGithubLine size={md ? 32 : 24} /></a>
+              <a className="rounded-full border-[1px] border-transparent hover:border-current p-2" target="_blank" rel="noopener noreferrer" href="mailto:ztcollazo08@gmail.com" aria-label="Github"><HiOutlineMail size={md ? 32 : 24} strokeWidth={2} /></a>
             </div>
           </Parallax>
         </Element>
@@ -149,11 +157,12 @@ const Home = ({ projects }) => {
 
 export const getServerSideProps = async () => {
   try {
-    const projects = (await getAllProjects('ztcollazo', 3)).filter((p) => p.name !== 'ztcollazo');
+    const project1 = await getProject('bookwyrm');
+    const project2 = await getProject('farm-chores');
 
     return {
       props: {
-        projects,
+        projects: [project1, project2],
         error: null,
       },
     };
