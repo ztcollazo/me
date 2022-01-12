@@ -66,7 +66,7 @@ export const getAllProjects = async (user: string = 'ztcollazo', limit: number =
   return u.repositories.edges.map((r) => formatRepo(r.node));
 };
 
-export const getProject = async (name: string, owner = 'ztcollazo', includeReadme = true) => {
+export const getProject = async (name: string, owner = 'ztcollazo', includeReadme = false) => {
   const { repository: project } = await graphql<{ repository: any }>(
     `
     query repository($owner: String!, $name: String!) {

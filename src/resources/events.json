@@ -1,11 +1,11 @@
 [
   {
     "year": 2021,
-    "description": "Started rewriting my first big software project, BookWyrm, in Ruby on Rails."
+    "description": "Started rewriting my first big software project, Bookwyrm (2.0), in Ruby on Rails."
   },
   {
     "year": 2021,
-    "description": "Scored a 1270 on my SAT (yeah, in eigth grade), with a 590 on math and a 680 on language arts."
+    "description": "Scored a 1270 on my SAT, with a 590 on math and a 680 on language arts."
   },
   {
     "year": 2021,
@@ -17,7 +17,7 @@
   },
   {
     "year": 2021,
-    "description": "Finished writing my first big project, BookWyrm."
+    "description": "Finished writing my first big project, Bookwyrm."
   },
   {
     "year": 2020,
@@ -29,7 +29,7 @@
   },
   {
     "year": 2020,
-    "description": "Started my first big project, BookWyrm, for book reviews. I wrote it in React and JavaScript"
+    "description": "Started my first big project, Bookwyrm (1.0), for book reviews. I wrote it in React and JavaScript."
   },
   {
     "year": 2020,
@@ -53,7 +53,7 @@
   },
   {
     "year": 2019,
-    "description": "Joined the school robotics club. The sixth graders had a different robot than the seventh and eighth, and we had no idea what we were doing."
+    "description": "Joined the school robotics club."
   },
   {
     "year": 2019,
@@ -81,6 +81,6 @@
   },
   {
     "year": 2013,
-    "description": "Started attending Richmond Christian School, where my dad was principle."
+    "description": "Started attending Richmond Christian School, where my dad was principal."
   }
 ]

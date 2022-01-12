@@ -79,7 +79,7 @@ const Project = ({ project, error }) => {
       <NextSeo title={nameFor(project?.name ?? '')} openGraph={{ title: `${((x) => (x ? `${x} | Zachary Collazo` : 'Zachary Collazo'))(nameFor(project?.name ?? ''))}` }} />
       {!error ? (
         <main className="flex flex-col min-h-[77vh] bottom-0 top-0 mb-16 md:pb-0 flex-wrap flex-1 p-8 md:p-16 font-mono">
-          <h1 className="font-bold text-3xl text-center md:text-8xl mb-8 sm:text-5xl">{nameFor(project.name)}</h1>
+          <h1 className="text-3xl text-center md:text-8xl mb-8 sm:text-5xl font-sans font-extrabold md:text-left">{nameFor(project.name)}</h1>
           <div style={{ gridTemplateColumns: '75% 25%' }} className="md:grid flex flex-col-reverse m-auto md:m-[initial]">
             <div>
               <ReactMarkdown
@@ -140,8 +140,8 @@ const Project = ({ project, error }) => {
             <div className="h-full">
               <div className="flex top-0 w-full justify-start m-auto md:mx-4 left-0 flex-col">
                 <div className="flex flex-row justify-around">
-                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
-                  {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto" href={project.url}><RiGithubLine size={24} /></a>}
+                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto border-[1px] border-transparent hover:border-current p-2 rounded-full" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
+                  {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto border-[1px] border-transparent hover:border-current p-2 rounded-full" href={project.url}><RiGithubLine size={24} /></a>}
                 </div>
                 <p className="mx-auto my-4">{project.description}</p>
                 <div className="flex flex-wrap flex-row flex-1 justify-center md:justify-start">
@@ -163,7 +163,7 @@ export const getServerSideProps = async (context: any) => {
       };
     }
 
-    const project = await getProject(context.params.name, context.params.name === 'destination-app' ? 'ericcecchi' : 'ztcollazo');
+    const project = await getProject(context.params.name, context.params.name === 'destination-app' ? 'ericcecchi' : 'ztcollazo', true);
 
     return {
       props: {

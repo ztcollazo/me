@@ -137,7 +137,7 @@ const Header = () => {
           <PageLink href="/">Home</PageLink>
           <PageLink href="/about">About</PageLink>
           <PageLink href="/projects">Projects</PageLink>
-          <PageLink className="dark:bg-gray-700 not-animated-underline bg-gray-300 px-5 shadow-md py-3 rounded-full" href="/resume">Resume</PageLink>
+          <PageLink href="/resume">Resume</PageLink>
           <ThemeSwtich />
         </nav>
         <div style={{ backgroundColor: 'inherit' }} className="float-right bg-opacity-90 md:hidden absolute w-full p-0 top-0 m-0 right-0">
@@ -162,7 +162,7 @@ const Header = () => {
               <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/">Home</PageLink>
               <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/about">About</PageLink>
               <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/projects">Projects</PageLink>
-              <PageLink onClick={toggle} className="max-w-full mx-4 block dark:bg-gray-700 not-animated-underline bg-gray-300 px-4 shadow-md py-2 rounded-full" href="/resume">Resume</PageLink>
+              <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/resume">Resume</PageLink>
               <span className="max-w-full flex flex-row justify-around p-5">
                 <span>{theme === 'dark' ? 'Disable dark mode' : 'Enable dark mode'}</span>
                 <ThemeSwtich />
