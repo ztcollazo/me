@@ -27,8 +27,8 @@ const Circle = forwardRef<HTMLDivElement, {
   differentPad = false,
   inView,
 }, ref) => (
-  <div ref={ref} className={`rounded-full ring-2 ring-offset-1 ring-offset-transparent dark:ring-gray-600 ring-gray-300 items-center flex flex-col justify-center mx-5 p-2 md:p-4 w-[${width}rem] min-h-[${height}rem]`}>
-    <div className={`rounded-full ring-2 ring-offset-1 ring-offset-transparent dark:ring-gray-600 ring-gray-300 items-center flex flex-col justify-center p-2 ${differentPad && 'py-4'} md:p-4 ${differentPad && 'md:py-6'} w-[${width - 1}rem] min-h-[${height - 1}rem] ${inView ? 'bg-gray-300 dark:bg-gray-600' : ''}`}>
+  <div ref={ref} style={{ minWidth: `${width}rem`, minHeight: `${height}rem` }} className="rounded-full ring-2 ring-offset-1 ring-offset-transparent dark:ring-gray-600 ring-gray-300 items-center flex flex-col justify-center mx-5 p-2 md:p-4">
+    <div style={{ minWidth: `${width - 1}rem`, minHeight: `${height - 1}rem` }} className={`rounded-full ring-2 ring-offset-1 ring-offset-transparent dark:ring-gray-600 ring-gray-300 items-center flex flex-col justify-center p-2 ${differentPad && 'py-4'} md:p-4 ${differentPad && 'md:py-6'} ${inView ? 'bg-gray-300 dark:bg-gray-600' : ''}`}>
       {children}
     </div>
   </div>
@@ -38,7 +38,7 @@ const ResumeItem = ({
   year = null,
   description = '',
   lastItem = false,
-  circleHeight = 10,
+  circleHeight = 5,
   circleWidth = 5,
 }) => {
   const [inView, setInView] = useState(false);
@@ -110,7 +110,7 @@ const Resume = () => {
       </Head>
       <NextSeo title="Resume" openGraph={{ title: 'Resume | Zachary Collazo' }} />
       <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 lg:p-16 font-mono max-w-full">
-        <div className="flex items-center p-2">
+        <div className="flex justify-center md:justify-start items-center p-2">
           <h1 className="font-extrabold md:text-8xl mb-8 text-5xl font-sans">Resume</h1>
           <a title="View PDF Resume" href="/resume.pdf" className="ml-5 mb-5 rounded-full border-[1px] border-transparent hover:border-current p-2" aria-label="View PDF version">
             <HiOutlineDocument size={48} />
@@ -186,6 +186,7 @@ const Resume = () => {
                     eventsByYears[year].map((des, j) => (
                       <ResumeItem
                         circleHeight={0}
+                        circleWidth={0}
                         description={des}
                         key={des}
                         lastItem={
