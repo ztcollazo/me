@@ -94,7 +94,7 @@ const Project = ({ project, error }) => {
               </ReactMarkdown>
               {md ? project.readme && (
               <div className="font-sans mt-4 border-[1px] dark:border-gray-300 border-gray-500 rounded-lg md:p-4 m-auto md:m-[initial]">
-                <a target="_blank" rel="noopener noreferrer" href={project.readme.url}><h4 className="text-lg hover:underline mb-4 dark:text-gray-300">Project Readme</h4></a>
+                {!project.isPrivate ? <a target="_blank" rel="noopener noreferrer" href={project.readme.url}><h4 className="text-lg hover:underline mb-4 dark:text-gray-300">Project Readme</h4></a> : <h4 className="text-lg mb-4 dark:text-gray-300">Project Readme</h4>}
                 <hr className="dark:opacity-40 opacity-70 -mx-4" />
                 <ReactMarkdown
                   rehypePlugins={[rehypeRaw, rehypeSanitize]}
@@ -140,7 +140,8 @@ const Project = ({ project, error }) => {
             <div className="h-full">
               <div className="flex top-0 w-full justify-start m-auto md:mx-4 left-0 flex-col">
                 <div className="flex flex-row justify-around">
-                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto border-[1px] border-transparent hover:border-current p-2 rounded-full" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
+                  {/* eslint-disable-next-line no-nested-ternary */}
+                  {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" className="m-auto border-[1px] border-transparent hover:border-current p-2 rounded-full" href={(project.name === 'destination-app') ? 'https://destination-app-staging.herokuapp.com' : ['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={24} /></a>}
                   {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="m-auto border-[1px] border-transparent hover:border-current p-2 rounded-full" href={project.url}><RiGithubLine size={24} /></a>}
                 </div>
                 <p className="mx-auto my-4">{project.description}</p>

@@ -13,7 +13,7 @@ const Project: FC<{ project: any }> = ({ project }) => (
         <a>
           <div className="font-sans">
             <h2 className="inline-block font-bold">{nameFor(project.name)}</h2>
-            <p className="text-gray-500 dark:text-gray-400">{project.description}</p>
+            <p className="text-gray-500 font-extralight dark:text-gray-400">{project.description}</p>
           </div>
         </a>
       </Link>

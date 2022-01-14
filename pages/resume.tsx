@@ -112,7 +112,7 @@ const Resume = () => {
       <main className="flex flex-col min-h-[77vh] bottom-0 top-0 flex-wrap flex-1 lg:p-16 font-mono max-w-full">
         <div className="flex justify-center md:justify-start items-center p-2">
           <h1 className="font-extrabold md:text-8xl mb-8 text-5xl font-sans">Resume</h1>
-          <a title="View PDF Resume" href="/resume.pdf" className="ml-5 mb-5 rounded-full border-[1px] border-transparent hover:border-current p-2" aria-label="View PDF version">
+          <a target="_blank" rel="noopener noreferrer" title="View PDF Resume" href="/resume.pdf" className="ml-5 mb-5 rounded-full border-[1px] border-transparent hover:border-current p-2" aria-label="View PDF version">
             <HiOutlineDocument size={48} />
           </a>
           <a title="Download PDF Resume" href="/resume.pdf" download className="ml-5 mb-5 rounded-full border-[1px] border-transparent hover:border-current p-2" aria-label="View PDF version">

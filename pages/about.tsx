@@ -25,9 +25,10 @@ const About = () => (
         I tend to work on the software more. Most of my knowledge comes from&nbsp;
         <a className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href="https://github.com/ericcecchi">my uncle</a>
         , who is a full-stack developer for&nbsp;
-        <a className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.arcadia.com/">Arcadia.</a>
+        <a className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href="https://www.arcadia.com/">Arcadia</a>
+        .
       </div>
-      <div className="text-lg p-2 md:p-4 md:text-2xl">
+      <div className="text-lg p-2 md:p-4 font-extralight md:text-2xl">
         Feel free to check out some of my&nbsp;
         <Link passHref href="/projects">
           <a style={{ transitionDuration: '.5s' }} className="font-bold underline inline-block hover:translate-x-[1px] transition-transform">projects</a>

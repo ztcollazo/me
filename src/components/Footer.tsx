@@ -6,7 +6,7 @@ const FooterLink: FC<{ href: string }> = ({ href, children }) => <Link href={hre
 const Footer = () => (
   <footer className="text-center absolute left-0 right-0 bg-transparent bottom-0 w-100% p-5">
     <strong>
-      &#169;2021 Zachary Collazo
+      &copy;2021 Zachary Collazo
     </strong>
     {' '}
 &nbsp; &#183; &nbsp;
@@ -17,6 +17,9 @@ const Footer = () => (
     {' '}
 &nbsp; &#183; &nbsp;
     <FooterLink href="/projects">Projects</FooterLink>
+    {' '}
+&nbsp; &#183; &nbsp;
+    <FooterLink href="/resume">Resume</FooterLink>
   </footer>
 );
 

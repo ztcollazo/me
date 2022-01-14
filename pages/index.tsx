@@ -13,13 +13,9 @@ import { useMediaQuery } from 'react-responsive';
 import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineMail } from '@react-icons/all-files/hi/HiOutlineMail';
 import { NextSeo } from 'next-seo';
-import dynamic from 'next/dynamic';
 import Project from '@/components/Project';
 import { randomColor } from '@/utils/random';
 import { getProject } from '@/utils/github';
-
-const Canvas = dynamic(() => import('@react-three/fiber').then((fiber) => fiber.Canvas), { ssr: false });
-const TorusKnot = dynamic(import('@/components/TorusKnot'), { ssr: false });
 
 const Home = ({ projects }) => {
   // First animation done, second animation done, etc.
@@ -30,7 +26,6 @@ const Home = ({ projects }) => {
   const dark = theme === 'dark';
 
   const md = useMediaQuery({ minWidth: 768 });
-  const lg = useMediaQuery({ minWidth: 1024 });
 
   return (
     <ParallaxProvider>
@@ -40,35 +35,24 @@ const Home = ({ projects }) => {
         </Head>
         <NextSeo title="Home" />
         <div id="parallax" className="flex py-10 ml-4 md:ml-0 md:p-0 md:mr-8 -mt-20 mb-28 flex-row">
-          <Parallax className="w-full" y={[-30, 30]}>
-            <main style={{ zIndex: -1 }} className="w-full flex flex-col -mt-10 justify-center m-auto md:min-h-screen min-h-[60vh] pt-16">
-              <div className="flex justify-between flex-wrap">
-                <div style={{ flex: '1 1 45%' }} id="jumbotron" className="flex font-sans md:p-20 md:pr-20 pr-16 p-10 justify-between gap-4 w-full flex-col">
+          <Parallax className="w-full max-w-full" y={[-30, 30]}>
+            <main style={{ zIndex: -1 }} className="w-full flex flex-col -mt-10 justify-center h-full items-center md:items-start m-auto md:mb-36 lg:mb-0 pt-16">
+              <div style={{ flex: '1 1 45%' }} id="jumbotron" className="flex font-sans md:p-20 md:mr-0 p-10 justify-center w-max max-w-full gap-4">
+                <div className="flex flex-col items-center md:items-start max-w-full">
                   <Slide left onReveal={() => setTimeout(() => setFad(true), 600)}>
-                    <h1 className="md:text-8xl font-extrabold text-6xl p-2">Hello</h1>
+                    <h1 className="sm:text-8xl md:text-[10rem] lg:text-[13rem] font-extrabold text-6xl p-2">Hello</h1>
                   </Slide>
                   <Slide when={fad} left onReveal={() => setTimeout(() => setSad(true), 1000)}>
-                    <h2 className="md:text-4xl font-thin text-2xl p-2">my name is</h2>
+                    <h2 className="sm:text-4xl md:text-5xl lg:text-7xl font-thin text-2xl p-2">my name is</h2>
                   </Slide>
                   <Slide left when={sad}>
                     <RoughNotation animationDelay={975 + 500} iterations={2} animate show={sad} animationDuration={1100} strokeWidth={7} color={randomColor(dark)} type="box">
-                      <h1 className="md:text-7xl text-5xl p-2 font-extralight">Zachary Collazo</h1>
+                      <h1 className="sm:text-7xl md:text-8xl lg:text-[9rem] text-5xl p-2 font-extralight">Zachary Collazo</h1>
                     </RoughNotation>
                   </Slide>
                 </div>
-                {
-                  lg && (
-                    <div style={{ flex: '1 1 50%' }} className="w-full">
-                      <Canvas>
-                        <ambientLight />
-                        <pointLight position={[10, 10, 10]} />
-                        <TorusKnot />
-                      </Canvas>
-                    </div>
-                  )
-                }
               </div>
-              <div className="relative md:bottom-[-1rem] bottom-4 left-1/2 -ml-4 right-1/2 w-5 h-5">
+              <div className="relative self-center bottom-4 md:bottom-10 w-5 h-5">
                 <ScrollLink smooth duration={500} to="rest">
                   <HiOutlineChevronDown color="currentColor" />
                 </ScrollLink>
@@ -112,10 +96,10 @@ const Home = ({ projects }) => {
                 </div>
               </Fade>
             </div>
-            <div className="flex flex-col mt-10 md:mt-0 xl:grid xl:grid-cols-2 justify-start" style={{ gridTemplateColumns: '33% 66%' }}>
+            <div className="flex flex-col mt-20 xl:grid xl:grid-cols-2 justify-start" style={{ gridTemplateColumns: '40% 60%' }}>
               <Fade opposite bottom delay={600}>
                 <div className="min-h-full w-full flex items-center justify-center xl:justify-start md:p-5 md:mt-5">
-                  <h2 className="sm:text-4xl text-2xl">Check out my</h2>
+                  <h2 className="sm:text-4xl text-2xl">Check out all of my</h2>
                   <Link href="/projects" passHref>
                     <a>
                       <h1
@@ -131,7 +115,7 @@ const Home = ({ projects }) => {
                 </div>
               </Fade>
               <Fade opposite top delay={600}>
-                <ul className="flex gap-4 children-centered flex-wrap">
+                <ul className="flex gap-4 children-centered flex-wrap lg:flex-nowrap">
                   {
                     projects.map((p) => <Project key={p.name} project={p} />)
                   }
