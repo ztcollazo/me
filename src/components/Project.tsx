@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
 import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink';
-import Topic from './Topic';
 import nameFor from '@/utils/name-for';
+import Topic from './Topic';
 
 const Project: FC<{ project: any }> = ({ project }) => (
   <li style={{ transitionDuration: '.5s' }} className="rounded-xl text-left cursor-pointer w-full md:flex-grow flex flex-col card justify-between bg-white dark:bg-gray-700 hover:translate-x-[1px] hover:translate-y-[-1px] transition-transform">
