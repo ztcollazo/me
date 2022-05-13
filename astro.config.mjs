@@ -4,7 +4,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import turbolinks from '@astrojs/turbolinks';
-import vercel from '@astrojs/vercel/edge';
+import vercel from '@astrojs/vercel/serverless';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // https://astro.build/config
