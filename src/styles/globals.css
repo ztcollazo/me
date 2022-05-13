@@ -1,8 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
-@tailwind screens;
+:root {
+  --clay-background: theme('colors.gray.300');
+  --clay-border-radius: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clay-background: theme('colors.gray.600')
+  }
+}
 
 html {
   scrollbar-width: thin;
@@ -19,13 +24,40 @@ html.dark {
   scrollbar-color: theme('colors.gray.900') theme('colors.gray.200');
 }
 
-pre code.bg-gray-400.bg-opacity-50 {
-  background-color: transparent;
+.markdown a {
+  @apply dark:text-blue-400 text-blue-600 hover:underline;
 }
 
-pre code.bg-gray-400.bg-opacity-50:first-child {
-  padding-left: 0;
-  padding-right: 0;
+.markdown h1 {
+  @apply sm:text-4xl text-2xl font-bold pb-2 mb-6 border-b-[1px] border-gray-400;
+}
+
+.markdown h2 {
+  @apply sm:text-3xl text-xl font-bold pb-2 mb-6 border-b-[1px] border-gray-400;
+}
+
+.markdown h3 {
+  @apply sm:text-2xl text-xl;
+}
+
+.markdown ol, .markdown ul {
+  @apply ml-5;
+}
+
+.markdown ul {
+  @apply list-disc;
+}
+
+.markdown ol {
+  @apply list-decimal;
+}
+
+.markdown * {
+  @apply mb-4 break-words;
+}
+
+.markdown code {
+  word-wrap: break-word !important;
 }
 
 ::-webkit-scrollbar {
@@ -43,139 +75,91 @@ pre code.bg-gray-400.bg-opacity-50:first-child {
   @apply dark:bg-gray-200 bg-gray-900 rounded-full;
 }
 
-.animated-underline {
+.animated {
   position: relative;
-  border-bottom: none;
-}
-    
-.animated-underline::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: currentColor;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-  
-.animated-underline:hover::before {
-  transform: scaleX(1);
 }
 
-.active-underline {
-  position: relative;
-  border-bottom: none;
-}
-
-.active-underline::before {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: currentColor;
-  transform: scaleX(0.5);
-}
-
-.slanted-right {
-  -webkit-clip-path: polygon(0 0, 0% 0, 0% 100%);
-  clip-path: polygon(0 0, 1 0, 0% 100%);
-  @apply text-left px-16;
-}
-
-.slide-top-clip-path {
-  transform: skewY(-3deg)
-}
-
-.slide-bottom-clip-path {
-  transform: skewY(3deg)
-}
-
-.card {
-  box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
-  padding: 20px;
-}
-
-
-.children-centered > * {
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.chip-list {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  display: auto;
-}
-@media (max-width: 768px) {
-  .chip-list::before {
-    position: sticky;
-    top: 0;
-    left: -0.2em;
-    bottom: 0;
-    content: '\00A0\00A0';
-    font-size: 16px;
-    color: transparent;
-    width: 2rem;
-    background-image: linear-gradient(to right, white, transparent);
-  }
-
-  html.dark .chip-list::before {
-    background-image: linear-gradient(to right, theme('colors.gray.700'), transparent);
-  }
-
-  .chip-list::after {
-    position: sticky;
-    top: 0;
-    right: -0.2em;
-    bottom: 0;
-    content: '\00A0\00A0';
-    font-size: 16px;
-    color: transparent;
-    width: 2rem;
-    background-image: linear-gradient(to left, white, transparent);
-  }
-
-  html.dark .chip-list::after {
-    background-image: linear-gradient(to right, transparent, theme('colors.gray.700'));
-  }
-}
-
-.chip-list::-webkit-scrollbar {
-  display: none;
-}
-
-.hover-highlight {
-  position: relative;
-  z-index: 1;
-  padding: 0px 2px;
-}
-
-.hover-highlight::before {
+.animated::before, .animated::after {
   content: '';
   position: absolute;
-  z-index: -1;
   top: 0;
   bottom: 0;
-  left: -0.1em;
-  right: -0.1em;
-  background-color: var(--hh-color);
-  transform-origin: bottom center;
-  transform: scaleY(0.05);
-  transition: all 0.2s ease-in-out;
+  width: 2px;
+  background-color: currentColor;
+  transform-origin: center;
+  transform: scaleY(0);
+  transition: transform 0.5s ease;
 }
 
-.hover-highlight:hover::before {
+.animated::before {
+  left: -8px;
+}
+
+.animated::after {
+  right: -8px;
+}
+
+.animated:hover::before, .animated:hover::after {
   transform: scaleY(1);
-  opacity: var(--hh-opacity);
+}
+
+.active::before, .active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: currentColor;
+  transform-origin: center;
+  transform: scaleY(0.5);
+  transition: transform 0.5s ease;
+}
+
+.active::before {
+  left: -8px;
+}
+
+.active::after {
+  right: -8px;
+}
+
+.active:hover::before, .active:hover::after {
+  transform: scaleY(1);
+}
+
+@screen sm {
+  .hover-highlight {
+    position: relative;
+    z-index: 1;
+    padding: 0px 2px;
+  }
+
+  .hover-highlight::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: -0.1em;
+    right: -0.1em;
+    background-color: var(--hh-color);
+    transform-origin: bottom center;
+    transform: scaleY(0.05);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .hover-highlight:hover::before {
+    transform: scaleY(1);
+    opacity: var(--hh-opacity);
+  }
+}
+
+.clay-card {
+  --clay-background: theme('colors.gray.200');
+}
+
+@media (prefers-color-scheme: dark) {
+  .clay-card {
+    --clay-background: theme('colors.gray.700');
+  }
 }

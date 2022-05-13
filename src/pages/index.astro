@@ -1,0 +1,38 @@
+---
+import Hero from '@/components/Hero';
+import { Project } from '@/components/Project';
+import Main from '@/layouts/Main.astro';
+import { FaChevronCircleRight } from '@react-icons/all-files/fa/FaChevronCircleRight'
+import { getAllProjects } from '@/utils/github';
+import { randomColor } from '@/utils/random';
+
+const [project] = await getAllProjects('ztcollazo', 1) // Gets most popular project
+---
+<Main title="Home">
+	<div class="w-full h-full min-h-[45vh]">
+		<Hero client:only />
+	</div>
+	<div class="grid lg:grid-cols-2 w-full h-full gap-4 max-w-full">
+		<div class="clay w-full h-full md:p-12 sm:p-6 p-5 flex flex-col justify-between">
+			<div>
+				<h1 class="sm:text-4xl text-2xl mb-4">Learn more <a href="/about" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>about me</a>.</h1>
+				<p class="font-thin text-lg line-clamp-3">
+					I'm a teenager from Chesterfield, VA. I like making cool websites and apps and
+					whatever else you want me to make. I strive to learn everything I can get my hands on. 
+					I've always had an inclination to math and science, which has led me to an interest in technology.<br /><br />
+					I have about two years of experience with hardware and software development, but I tend
+					to work on the software more. Most of my knowledge comes from <a href="//github.com/ericcecchi">my uncle</a>,
+					who is a full-stack developer for <a href="//arcadia.com">Arcadia</a>.
+				</p>
+			</div>
+			<a class="flex gap-2 items-center font-bold" href="/about">Learn more <FaChevronCircleRight /></a>
+		</div>
+		<div class="w-full h-full max-w-full">
+			<h1 class="clay sm:text-4xl text-2xl mb-4 sm:p-6 p-5 md:p-14">Check out <a href="/projects" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>my projects</a>.</h1>
+			<div class="flex flex-col gap-4 justify-between items-center">
+				<Project project={project} />
+				<a class="clay p-5 w-full flex gap-2 font-bold items-center self-start" href="/projects">See more <FaChevronCircleRight /></a>
+			</div>
+		</div>
+	</div>
+</Main>

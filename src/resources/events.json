@@ -1,5 +1,13 @@
 [
   {
+    "year": 2022,
+    "description": "Started rewriting my portfolio in Astro."
+  },
+  {
+    "year": 2022,
+    "description": "Accepted into Appomattox Regional Governor's School for the Arts and Technology."
+  },
+  {
     "year": 2021,
     "description": "Started rewriting my first big software project, Bookwyrm (2.0), in Ruby on Rails."
   },
