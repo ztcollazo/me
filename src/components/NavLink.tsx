@@ -1,17 +1,22 @@
-import { FC, AnchorHTMLAttributes } from 'react';
-import Link, { LinkProps } from 'next/link';
-import { useRouter } from 'next/router';
+import { FC, AnchorHTMLAttributes, useState, useEffect } from 'react';
 
-type NavLinkProps = LinkProps & {
+type NavLinkProps = {
   activeClassName?: string,
-} & AnchorHTMLAttributes<any>;
+} & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const NavLink: FC<NavLinkProps> = ({
-  href, onClick, activeClassName, className, children, ...rest
+  href, activeClassName, className, children, ...rest
 }) => {
-  const router = useRouter();
+  const [path, setPath] = useState('/');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setPath(window.location.pathname);
+    }
+  });
+
   // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Link href={href} passHref {...rest}><a {...rest} className={`${router.pathname === href ? `${activeClassName} ` : ''}${className}`}>{children}</a></Link>;
+  return <a href={href} {...rest} className={`${path === href ? `${activeClassName} ` : ''}${className}`}>{children}</a>;
 };
 
 NavLink.defaultProps = {

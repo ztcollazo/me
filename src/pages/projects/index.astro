@@ -1,0 +1,17 @@
+---
+import Main from '@/layouts/Main.astro';
+import { getAllProjects } from '@/utils/github';
+import Project from '@/components/Project';
+
+const projects = (await getAllProjects()).filter(({ name }) => name !== 'ztcollazo');
+---
+
+<Main title="Projects">
+  <h1 class="sm:text-4xl text-2xl font-bold mb-6">Projects</h1>
+  <ul class="flex flex-col max-w-full md:grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+    {projects.map((project) => <Project project={project} />)}
+    <li style="transitionDuration: .3s" class="transition-transform p-4 text-center md:w-[396px] md:flex-grow flex flex-col justify-center hover:translate-x-[1px]">
+      <a href="/resume" class="font-bold text-lg">View other content on my resume.</a>
+    </li>
+  </ul>
+</Main>

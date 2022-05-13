@@ -1,0 +1,100 @@
+---
+import Main from "@/layouts/Main.astro";
+import events from "@/resources/events.json";
+import { random, randomColor } from "@/utils/random";
+import { HiOutlineArrowCircleDown } from "@react-icons/all-files/hi/HiOutlineArrowCircleDown";
+import { HiOutlineDocument } from "@react-icons/all-files/hi/HiOutlineDocument"
+import { HiOutlineDocumentDownload } from "@react-icons/all-files/hi/HiOutlineDocumentDownload"
+
+const byYear: Record<number, string[]> = {}
+
+events.map((ev) => (byYear[ev.year] = [...byYear?.[ev.year] ?? [], ev.description]))
+---
+<Main title="Resume">
+  <div class="flex flex-col justify-between items-center">
+    <div class="w-full flex flex-col justify-center gap-3 items-start">
+      <div class="flex gap-3 mb-4 items-center justify-between">
+        <h1 class="font-bold sm:text-4xl text-2xl w-full">My Experience</h1>
+        <div class="flex items-center justify-between gap-5 w-max">
+          <a target="_blank" rel="noopener noreferrer" title="View PDF Resume" href="/resume.pdf" class="rounded-full border border-transparent hover:border-current p-2" aria-label="View PDF version">
+            <HiOutlineDocument size={24} />
+          </a>
+          <a title="Download PDF Resume" href="/resume.pdf" download class="rounded-full border border-transparent hover:border-current p-2" aria-label="View PDF version">
+            <HiOutlineDocumentDownload size={24} />
+          </a>
+        </div>
+      </div>
+      <div class="md:items-start md:p-3 justify-around flex flex-col md:grid md:grid-cols-2">
+        <div class="mb-8 text-md">
+          <h2 class="font-semibold md:text-3xl mb-8 text-xl font-sans">Academics</h2>
+          <ul class="list-outside list-[circle] p-4">
+            <li>
+              <b>Richmond Christian School,</b>
+              <i>&nbsp;(K-4th)</i>
+            </li>
+            <li>
+              <b>Winterpock Elementary School,</b>
+              <i>&nbsp;Center-Based Gifted (5th)</i>
+            </li>
+            <li>
+              <b>Manchester Middle School,</b>
+              <i>&nbsp;Center-Based Gifted (6th)</i>
+            </li>
+            <li>
+              <b>Homeschool,</b>
+              <i>&nbsp;(7th-8th)</i>
+            </li>
+          </ul>
+        </div>
+        <div class="mb-8 text-md">
+          <h2 class="font-semibold md:text-3xl mb-8 text-xl font-sans">Skills</h2>
+          <ul class="list-outside list-[circle] p-4">
+            <li>
+              <b>HTML/CSS,</b>
+              <i>&nbsp;FreeCodeCamp Certified</i>
+            </li>
+            <li>
+              <b>JavaScript,</b>
+              <i>&nbsp;SoloLearn Certified</i>
+            </li>
+            <li>
+              <b>ReactJS,</b>
+              <i>&nbsp;Completing Certification</i>
+            </li>
+            <li>
+              <b>Other languages,</b>
+              <i>&nbsp;TypeScript, Ruby (and Ruby on Rails), Golang, Python, Bash, Zsh</i>
+            </li>
+            <li>
+              <b>3D Design/3D Printing</b>
+            </li>
+            <li>
+              <b>Raspberry Pi &amp; Linux</b>
+            </li>
+            <li>
+              <b>ProPresenter 6 &amp; 7</b>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <a href="/resume.pdf"><b>View other categories on the PDF version.</b></a>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex flex-col justify-between items-center">
+      <h1 class="font-bold sm:text-4xl text-2xl p-5 w-full text-left flex items-center justify-between gap-2"><p>A somewhat brief history of me</p><HiOutlineArrowCircleDown size={36} className="animate-bounce w-max" /></h1>
+      <ul class="w-full p-4 sm:p-10">
+        {
+          Object.keys(byYear).reverse().map((year) => (
+            <li class="w-full flex flex-col gap-4">
+              <h1 class="text-2xl font-bold py-7 text-center clay px-4" style={`--clay-background: linear-gradient(${random(0, 90)}deg, ${randomColor(false)}, ${randomColor(false)}); --clay-radius: 9999;`}>{year}</h1>
+              <ul class="flex flex-col gap-3 list-disc p-8">{byYear[year].map((ev) => (
+                <li class="text-lg font-thin">{ev}</li>
+              ))}</ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Main>

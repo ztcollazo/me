@@ -1,6 +1,6 @@
 import colors from 'tailwindcss/colors';
 
-export const random = (min: number, max: number, div: number = 1) => {
+export const random = (min: number, max: number, div = 1) => {
   const num = Math.floor((Math.random() * max) / div) * div;
   if (num >= min) {
     return num;
