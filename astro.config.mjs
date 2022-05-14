@@ -4,7 +4,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import turbolinks from '@astrojs/turbolinks';
-import netlify from '@astrojs/netlify/edge-functions';
+import netlify from '@astrojs/netlify/functions';
 import { VitePWA } from 'vite-plugin-pwa';
 
 // https://astro.build/config
