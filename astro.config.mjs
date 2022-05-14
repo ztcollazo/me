@@ -11,7 +11,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   site: 'https://ztcollazo.vercel.app',
   integrations: [react(), partytown(), sitemap(), tailwind(), turbolinks()],
-  adapter: netlify(),
+  adapter: netlify({ dist: new URL('./dist/', import.meta.url) }),
   vite: {
     plugins: [VitePWA()]
   }
