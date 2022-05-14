@@ -10,12 +10,12 @@
     "lint": "eslint"
   },
   "devDependencies": {
+    "@astrojs/netlify": "^0.3.4",
     "@astrojs/partytown": "^0.1.2",
     "@astrojs/react": "^0.1.2",
     "@astrojs/sitemap": "^0.1.0",
     "@astrojs/tailwind": "^0.2.1",
     "@astrojs/turbolinks": "^0.1.2",
-    "@astrojs/vercel": "^0.2.1",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@types/chroma-js": "^2.1.3",
     "@types/react": "^18.0.9",
