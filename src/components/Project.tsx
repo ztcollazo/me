@@ -1,6 +1,6 @@
 import { CSSProperties, FC } from 'react';
-import { RiGithubLine } from '@react-icons/all-files/ri/RiGithubLine';
-import { HiOutlineExternalLink } from '@react-icons/all-files/hi/HiOutlineExternalLink';
+import { RiGithubLine } from 'react-icons/ri';
+import { HiOutlineExternalLink } from 'react-icons/hi';
 import { nameFor } from '@/utils/meta-for';
 import Topic from './Topic';
 import { Repository } from '@/utils/github';

@@ -35,12 +35,12 @@
   },
   "dependencies": {
     "@octokit/graphql": "^4.8.0",
-    "@react-icons/all-files": "^4.1.0",
     "@react-three/drei": "^9.8.1",
     "@react-three/fiber": "^8.0.14",
     "claymorphism-css": "^1.0.5",
     "hamburger-react": "^2.5.0",
     "humanize-string": "^3.0.0",
+    "react-icons": "^4.3.1",
     "react-responsive": "^9.0.0-beta.8",
     "rehype-format": "^4.0.1",
     "rehype-highlight": "^5.0.2",
