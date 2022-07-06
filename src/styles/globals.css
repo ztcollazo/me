@@ -60,6 +60,30 @@ html.dark {
   word-wrap: break-word !important;
 }
 
+.markdown pre {
+  overflow-x: auto;
+}
+
+.markdown table {
+  @apply w-full;
+  border-top: 1px solid theme('colors.gray.500');
+  border-left: 1px solid theme('colors.gray.500');
+}
+
+.markdown thead {
+  @apply dark:bg-gray-800 bg-gray-400;
+}
+
+.markdown tbody {
+  @apply dark:bg-gray-700 bg-gray-300;
+}
+
+.markdown th, .markdown td {
+  @apply px-2 py-1 text-left;
+  border-bottom: 1px solid theme('colors.gray.500');
+  border-right: 1px solid theme('colors.gray.500');
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;

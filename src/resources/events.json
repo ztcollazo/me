@@ -1,6 +1,10 @@
 [
   {
     "year": 2022,
+    "description": "Started to work with Golang and wrote two open-source libraries, Weasel and Vibe."
+  },
+  {
+    "year": 2022,
     "description": "Started rewriting my portfolio in Astro."
   },
   {

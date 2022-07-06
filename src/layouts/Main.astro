@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import '@/styles/globals.css';
 import 'claymorphism-css/dist/clay.css';
+import 'highlight.js/styles/obsidian.css'
 
 export interface Props {
   title?: string
@@ -14,9 +15,8 @@ const { title } = Astro.props;
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width">
 	<title>{title && `${title} | `}Zachary Collazo</title>
-
 	<link rel="icon" type="image/x-icon" src="/favicon.ico" />
 </head>
 <body class="bg-gray-50 sm:p-5 p-3 dark:bg-gray-800 text-black dark:text-white flex flex-col justify-between">

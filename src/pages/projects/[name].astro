@@ -1,5 +1,5 @@
 ---
-import { HiOutlineExternalLink } from 'react-icons/hi';
+import { HiOutlineExternalLink, HiOutlineStar } from 'react-icons/hi';
 import { RiGithubLine } from 'react-icons/ri';
 import Main from '@/layouts/Main.astro';
 import Topic from '@/components/Topic';
@@ -18,11 +18,11 @@ if (Astro.params.name === 'ztcollazo') {
 const project = await getProject(String(Astro.params.name), ownerFor(String(Astro.params.name)), true)
 ---
 <Main title={nameFor(project.name)}>
-  <div class="flex flex-col justify-between items-center sm:p-4 gap-4">
+  <div class="flex flex-col justify-between w-full items-center sm:p-4 gap-4">
     <h1 class="text-2xl font-bold sm:text-4xl sm:self-start">{nameFor(project.name)}</h1>
-    <div class="markdown sm:ml-3" set:html={markdown(Buffer.from(resources[project.name], 'base64').toString())}></div>
-    <div class="lg:grid gap-5 flex flex-col" style="grid-template-columns: 65% 33.5%;">
-      <div class="markdown clay p-6 hidden md:block" set:html={markdown(project.readme.text)}></div>
+    <div class="markdown sm:ml-3" set:html={markdown(Buffer.from(resources[project.name] ?? '', 'base64').toString())}></div>
+    <div class="lg:grid gap-5 w-full flex flex-col" style="grid-template-columns: 65% 33.5%;">
+      <div class="markdown overflow-x-auto min-w-full w-0 clay p-6 hidden md:block" set:html={markdown(project.readme.text)}></div>
       <div class="clay w-full p-6 md:hidden text-center">
         <a class="font-bold text-lg" href={project.readme.url}>View project README.</a>
       </div>
@@ -30,6 +30,10 @@ const project = await getProject(String(Astro.params.name), ownerFor(String(Astr
         <span class="flex justify-around items-center w-full sm:gap-4 gap-2">
           {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" class="inline-block rounded-full border border-transparent hover:border-current p-2" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={18} /></a>}
           {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" class="inline-block rounded-full border border-transparent hover:border-current p-2" href={project.url}><RiGithubLine size={18} /></a>}
+          <a target="_blank" rel="noopener noreferrer" aria-label="Stars" class="flex gap-3 justify-between items-center rounded-full border border-transparent hover:border-current p-2" href={project.url + "/stargazers"}>
+            <HiOutlineStar size={18} />
+            <span>{project.stargazerCount}</span>
+          </a>
         </span>
         <p class="text-lg">{project.description}</p>
         <div class="flex flex-row md:flex-wrap justify-start">

@@ -14,6 +14,7 @@ interface BaseRepository {
     url: string
   },
   isPrivate: boolean,
+  stargazerCount: number,
   name: string,
   description: string,
   homepageUrl: string,
@@ -83,6 +84,7 @@ export const getAllProjects = async (user = 'ztcollazo', limit = 20): Promise<Re
                 name
                 description
                 isPrivate
+                stargazerCount
                 homepageUrl
                 url
                 openGraphImageUrl
@@ -123,6 +125,7 @@ export const getProject = async (name: string, owner = 'ztcollazo', includeReadm
         }
         isPrivate
         name
+        stargazerCount
         description
         homepageUrl
         url
