@@ -1,7 +1,11 @@
 [
   {
     "year": 2022,
-    "description": "Started to work with Golang and wrote two open-source libraries, Weasel and Vibe."
+    "description": "Started to work with Golang and wrote three open-source libraries: Weasel, Vibe, and Fiber Inertia."
+  },
+  {
+    "year": 2022,
+    "description": "Selected as a winner in Apple's WWDC22 Swift Student Challenge."
   },
   {
     "year": 2022,

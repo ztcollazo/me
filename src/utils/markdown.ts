@@ -8,6 +8,7 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import rehypeHighlight from 'rehype-highlight';
+import hbs from 'highlight.js/lib/languages/handlebars';
 
 export default function markdown(mdString: string): string {
   return unified()
@@ -15,7 +16,11 @@ export default function markdown(mdString: string): string {
     .use(remarkGemoji)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeHighlight)
+    .use(rehypeHighlight, {
+      languages: {
+        hbs,
+      },
+    })
     .use(rehypeRaw)
     .use(rehypeSanitize, {
       ...defaultSchema,
