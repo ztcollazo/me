@@ -1,58 +1,39 @@
-import { Canvas, useThree } from '@react-three/fiber';
-import { Text, Sparkles, Torus, MeshWobbleMaterial } from '@react-three/drei';
-import useTheme from '@/utils/use-theme';
-import { useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import { Canvas } from '@react-three/fiber';
+import { Text, Stars, Center, Float } from '@react-three/drei';
+import font from 'three/examples/fonts/helvetiker_regular.typeface.json';
 import { randomColor } from '@/utils/random';
+import { useMediaQuery } from 'react-responsive';
 
 const TitleText = () => {
-  const theme = useTheme();
+  const md = useMediaQuery({ minWidth: 768 });
 
   return (
-    <>
-      <Torus args={[10, 0.5, 16, 100]} position={[0, 0, 0]}>
-        <MeshWobbleMaterial factor={0.01} speed={1} color={randomColor(true)} />
-      </Torus>
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore */}
-      <Text anchorX="center" fontSize={2} anchorY="middle" color={theme === 'dark' ? 'white' : 'black'}>Hey, I&apos;m Zachary</Text>
-    </>
+    <Center>
+      <Float speed={5}>
+        {/* @ts-expect-error the font type does not match */}
+        <Text fontSize={md ? 2 : 1} font={font}>
+          Hey, I&apos;m Zachary
+          <meshBasicMaterial color={randomColor(true)} />
+        </Text>
+      </Float>
+    </Center>
   );
 };
 
-const Content = () => {
-  const three = useThree();
-  const theme = useTheme();
+const Content = () => (
+  <>
+    <ambientLight />
+    <pointLight />
+    <TitleText />
+    <Stars />
+  </>
+);
 
-  useEffect(() => {
-    const handler = (event) => {
-      three.camera.position.x = event.clientX / window.innerWidth - 0.5;
-      three.camera.position.y = -(event.clientY / window.innerHeight - 0.5);
-    };
+const Hero = () => (
+  <Canvas style={{ height: '45vh' }}>
+    <Content />
+  </Canvas>
+);
 
-    window.addEventListener('mousemove', handler);
-
-    return () => window.removeEventListener('mousemove', handler);
-  });
-  return (
-    <>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <TitleText />
-      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-      {/* @ts-ignore */}
-      <Sparkles position={[0, 0, 0]} color={randomColor(theme === 'dark')} count={500} size={9} opacity={0.5} speed={2} noise={0.7} scale={50} />
-    </>
-  );
-};
-
-const Hero = () => {
-  const md = useMediaQuery({ minWidth: '768px' });
-  return (
-    <Canvas camera={{ zoom: md ? 0.3 : 0.2 }} style={{ minHeight: '60vh' }}>
-      <Content />
-    </Canvas>
-  );
-};
 
 export default Hero;

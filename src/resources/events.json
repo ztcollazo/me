@@ -1,6 +1,14 @@
 [
   {
     "year": 2022,
+    "description": "Started attending Appomattox Regional Governor's School for the Arts and Technology."
+  },
+  {
+    "year": 2022,
+    "description": "Finished rewriting the second version of BookWyrm."
+  },
+  {
+    "year": 2022,
     "description": "Started to work with Golang and wrote three open-source libraries: Weasel, Vibe, and Fiber Inertia."
   },
   {
