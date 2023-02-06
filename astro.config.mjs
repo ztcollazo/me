@@ -12,6 +12,7 @@ export default defineConfig({
   site: 'https://ztcollazo.vercel.app',
   integrations: [react(), partytown(), sitemap(), tailwind(), turbolinks()],
   adapter: netlify({ dist: new URL('./dist/', import.meta.url) }),
+  output: 'server',
   vite: {
     plugins: [VitePWA()]
   }
