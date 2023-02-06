@@ -17,7 +17,7 @@ const { title } = Astro.props;
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>{title && `${title} | `}Zachary Collazo</title>
-	<link rel="icon" type="image/x-icon" src="/favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 </head>
 <body class="bg-gray-50 sm:p-5 p-3 dark:bg-gray-800 text-black dark:text-white flex flex-col justify-between">
   <Header client:load />
