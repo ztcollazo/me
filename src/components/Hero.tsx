@@ -1,11 +1,12 @@
 import { Canvas } from '@react-three/fiber';
-import { Text, Stars, Center, Float } from '@react-three/drei';
+import { Text, Center, Float, Sparkles } from '@react-three/drei';
 import font from 'three/examples/fonts/helvetiker_regular.typeface.json';
-import { randomColor } from '@/utils/random';
 import { useMediaQuery } from 'react-responsive';
+import useTheme from '@/utils/use-theme';
 
 const TitleText = () => {
   const md = useMediaQuery({ minWidth: 768 });
+  const theme = useTheme();
 
   return (
     <Center>
@@ -13,21 +14,25 @@ const TitleText = () => {
         {/* @ts-expect-error the font type does not match */}
         <Text fontSize={md ? 2 : 1} font={font}>
           Hey, I&apos;m Zachary
-          <meshBasicMaterial color={randomColor(true)} />
+          <meshBasicMaterial color={theme === 'dark' ? '#ffffff' : '#000000'} />
         </Text>
       </Float>
     </Center>
   );
 };
 
-const Content = () => (
-  <>
-    <ambientLight />
-    <pointLight />
-    <TitleText />
-    <Stars />
-  </>
-);
+const Content = () => {
+  const theme = useTheme();
+
+  return (
+    <>
+      <ambientLight />
+      <pointLight />
+      <TitleText />
+      <Sparkles color={theme === 'dark' ? '#ffffff' : '#000000'} scale={5} count={1000}  />
+    </>
+  );
+};
 
 const Hero = () => (
   <Canvas style={{ height: '45vh' }}>

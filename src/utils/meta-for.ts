@@ -5,6 +5,7 @@ export const nameFor = (name: string): string => {
   if (name === 'me') return 'Portfolio site';
   if (name === 'destination-app') return 'Destination';
   if (name === 'joke.svg') return 'Joke.SVG';
+  if (name === 'FRC-2023-Charged-Up') return 'Charged Up Robot';
   return humanizeString(name);
 };
 

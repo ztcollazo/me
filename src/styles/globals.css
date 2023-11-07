@@ -99,91 +99,71 @@ html.dark {
   @apply dark:bg-gray-200 bg-gray-900 rounded-full;
 }
 
-.animated {
-  position: relative;
-}
-
-.animated::before, .animated::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: currentColor;
-  transform-origin: center;
-  transform: scaleY(0);
-  transition: transform 0.5s ease;
-}
-
 .animated::before {
-  left: -8px;
-}
-
-.animated::after {
-  right: -8px;
-}
-
-.animated:hover::before, .animated:hover::after {
-  transform: scaleY(1);
-}
-
-.active::before, .active::after {
   content: '';
   position: absolute;
+  z-index: -1;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background-color: currentColor;
-  transform-origin: center;
-  transform: scaleY(0.5);
-  transition: transform 0.5s ease;
+  left: -0.1em;
+  right: -0.1em;
+  background-color: theme('colors.blue.500');
+  transform-origin: bottom center;
+  transform: scaleY(0.05);
+  transition: all 0.2s ease-in-out;
+}
+
+.animated, .active {
+  position: relative;
+  z-index: 1;
+  padding: 0px 2px;
+}
+
+.animated:hover::before {
+  transform: scaleY(1);
+  opacity: 0.5;
 }
 
 .active::before {
-  left: -8px;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -0.1em;
+  right: -0.1em;
+  background-color: theme('colors.blue.800');
+  transform-origin: bottom center;
+  transform: scaleY(0.05);
+  transition: all 0.2s ease-in-out;
 }
 
-.active::after {
-  right: -8px;
-}
-
-.active:hover::before, .active:hover::after {
+.active:hover::before {
   transform: scaleY(1);
+  opacity: 0.5;
 }
 
-@screen sm {
-  .hover-highlight {
-    position: relative;
-    z-index: 1;
-    padding: 0px 2px;
-  }
-
-  .hover-highlight::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: -0.1em;
-    right: -0.1em;
-    background-color: var(--hh-color);
-    transform-origin: bottom center;
-    transform: scaleY(0.05);
-    transition: all 0.2s ease-in-out;
-  }
-
-  .hover-highlight:hover::before {
-    transform: scaleY(1);
-    opacity: var(--hh-opacity);
-  }
+.hover-highlight {
+  position: relative;
+  z-index: 1;
+  padding: 0px 2px;
 }
 
-.clay-card {
-  --clay-background: theme('colors.gray.200');
+.hover-highlight::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -0.1em;
+  right: -0.1em;
+  background-color: var(--hh-color);
+  transform-origin: bottom center;
+  transform: scaleY(0.05);
+  transition: all 0.2s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  .clay-card {
-    --clay-background: theme('colors.gray.700');
-  }
+.hover-highlight:hover::before {
+  transform: scaleY(1);
+  opacity: var(--hh-opacity);
 }

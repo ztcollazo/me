@@ -9,7 +9,7 @@ import Button from './core/Button';
 // Used for the navbar
 const PageLink: FC<{ href: string, className?: string, onClick?: () => void, children?: React.ReactNode | undefined }> = ({
   href, className, onClick, children
-}) => <NavLink onClick={onClick} activeClassName="active dark:text-blue-400 text-blue-600" className={`h-full py-3 my-2 px-2 mx-3 m-1 text-center animated ${className}`} href={href}>{children}</NavLink>;
+}) => <NavLink onClick={onClick} activeClassName="active" className={`h-full py-8 font-bold px-6 mx-3 text-xl m-1 text-center animated ${className}`} href={href}>{children}</NavLink>;
 
 PageLink.defaultProps = {
   className: '',
@@ -35,16 +35,16 @@ const Header = memo(function Header() {
   }, [h, open, shouldOpen]);
 
   return (
-    <header className="flex flex-col gap-4 items-center">
-      <div className="flex justify-between items-center clay px-5 py-4 w-full right-0 dark:text-white text-black">
+    <header className="flex flex-col gap-4 items-center bg-white min-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-600">
+      <div className="flex justify-between items-center px-5 py-2 w-full right-0 dark:text-white text-black">
         <a href="/" aria-label="home" className="flex flex-col justify-center items-center md:items-start">
           <img src={`/me-${theme}.png`} alt="" className="z-[500]" width={40} height={40} />
         </a>
-        <nav className="float-right hidden md:block m-0 p-5 pb-4">
+        <nav className="hidden md:flex gap-4 items-center justify-end m-0 px-5 py-2">
           <PageLink href="/">Home</PageLink>
           <PageLink href="/about">About</PageLink>
           <PageLink href="/projects">Projects</PageLink>
-          <Button type={NavLink} className="ml-4" activeClassName="bg-blue-400" href="/resume">Resume</Button>
+          <Button type={NavLink} className="max-w-full ml-4 block text-center" activeClassName="bg-blue-400" href="/resume">Resume</Button>
         </nav>
         <button type="button" onClick={toggle} className="md:hidden text-current">
           <Squash
@@ -58,13 +58,13 @@ const Header = memo(function Header() {
       <nav
         style={{
           transition: 'max-height 0.5s ease-in-out',
-          maxHeight: h
+          maxHeight: h,
         }}
-        className="md:hidden clay overflow-hidden w-full"
+        className="md:hidden flex flex-col gap-2 m-0 -mt-4 items-start overflow-hidden w-full"
       >
-        <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/">Home</PageLink>
-        <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/about">About</PageLink>
-        <PageLink onClick={toggle} className="max-w-full mx-4 block" href="/projects">Projects</PageLink>
+        <PageLink onClick={toggle} className="mx-4 block w-max" href="/">Home</PageLink>
+        <PageLink onClick={toggle} className="mx-4 block w-max" href="/about">About</PageLink>
+        <PageLink onClick={toggle} className="mx-4 block w-max" href="/projects">Projects</PageLink>
         <Button type={NavLink} className="max-w-full m-4 block text-center" activeClassName="bg-blue-400" href="/resume">Resume</Button>
       </nav>
     </header>

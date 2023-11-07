@@ -1,7 +1,6 @@
 ---
 import Main from "@/layouts/Main.astro";
 import events from "@/resources/events.json";
-import { random, randomColor } from "@/utils/random";
 import { HiOutlineArrowCircleDown, HiOutlineDocument, HiOutlineDocumentDownload } from "react-icons/hi";
 
 const byYear: Record<number, string[]> = {}
@@ -42,6 +41,10 @@ events.map((ev) => (byYear[ev.year] = [...byYear?.[ev.year] ?? [], ev.descriptio
               <b>Homeschool,</b>
               <i>&nbsp;(7th-8th)</i>
             </li>
+            <li>
+              <b>Appomattox Regional Governor&apos;s School for the Arts and Technology,</b>
+              <i>&nbsp;(9th-Present)</i>
+            </li>
           </ul>
         </div>
         <div class="mb-8 text-md">
@@ -60,8 +63,12 @@ events.map((ev) => (byYear[ev.year] = [...byYear?.[ev.year] ?? [], ev.descriptio
               <i>&nbsp;Sololearn Certified</i>
             </li>
             <li>
+              <b>Networking and Cybersecurity</b>
+              <i>(GFACT Certified)</i>
+            </li>
+            <li>
               <b>Other languages,</b>
-              <i>&nbsp;TypeScript, Ruby (and Ruby on Rails), Golang, Python, Bash, Zsh</i>
+              <i>&nbsp;TypeScript, Ruby (and Ruby on Rails), Golang, Rust, Dart (and Flutter) Python, Shell scripting, Java</i>
             </li>
             <li>
               <b>3D Design/3D Printing</b>
@@ -70,7 +77,7 @@ events.map((ev) => (byYear[ev.year] = [...byYear?.[ev.year] ?? [], ev.descriptio
               <b>Raspberry Pi &amp; Linux</b>
             </li>
             <li>
-              <b>ProPresenter 6 &amp; 7</b>
+              <b>FRC Robotics (Programming and electronics)</b>
             </li>
           </ul>
         </div>
@@ -85,7 +92,7 @@ events.map((ev) => (byYear[ev.year] = [...byYear?.[ev.year] ?? [], ev.descriptio
         {
           Object.keys(byYear).reverse().map((year) => (
             <li class="w-full flex flex-col gap-4">
-              <h1 class="text-2xl font-bold py-7 text-center clay px-4" style={`--clay-background: linear-gradient(${random(0, 90)}deg, ${randomColor(false)}, ${randomColor(false)}); --clay-radius: 9999;`}>{year}</h1>
+              <h1 class="text-2xl font-bold py-7 text-center px-4 rounded-lg border border-gray-200 dark:border-gray-700">{year}</h1>
               <ul class="flex flex-col gap-3 list-disc p-8">{byYear[year].map((ev) => (
                 <li class="text-lg font-thin">{ev}</li>
               ))}</ul>

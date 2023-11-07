@@ -3,7 +3,7 @@ import Main from '@/layouts/Main.astro';
 import { getAllProjects } from '@/utils/github';
 import Project from '@/components/Project';
 
-const projects = (await getAllProjects()).filter(({ name }) => name !== 'ztcollazo');
+const projects = (await getAllProjects()).filter(({ name }) => name !== 'ztcollazo' && name !== '404-Pathmaking-Tools' && name !== '.github');
 ---
 
 <Main title="Projects">

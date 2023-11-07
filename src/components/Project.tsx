@@ -1,12 +1,13 @@
-import { CSSProperties, FC } from 'react';
+import { FC } from 'react';
 import { RiGithubLine } from 'react-icons/ri';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { nameFor } from '@/utils/meta-for';
 import Topic from './Topic';
 import { Repository } from '@/utils/github';
+import Card from './core/Card';
 
 export const Project: FC<{ project: Repository }> = ({ project }) => (
-  <li style={{ transitionDuration: '.5s' } as CSSProperties} className="clay clay-card p-5 text-left w-full md:flex-grow flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[-1px] transition-transform">
+  <Card style={{ transitionDuration: '.5s' }} className="md:flex-grow flex flex-col justify-between hover:translate-x-[1px] hover:translate-y-[-1px] transition-transform">
     <div className="flex flex-row justify-between">
       <a href={`/projects/${project.name}`}>
         <div className="font-sans">
@@ -19,11 +20,14 @@ export const Project: FC<{ project: Repository }> = ({ project }) => (
         {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" className="inline-block rounded-full border border-transparent hover:border-current p-2" href={project.url}><RiGithubLine size={18} /></a>}
       </span>
     </div>
-    <div className="flex flex-row md:flex-wrap justify-start">
-      {
-        project.topics.map((t) => <Topic key={t.name} topic={t} />)
-      }
-    </div>
+    {
+      project.topics &&
+        <div className="flex flex-row mt-2 md:flex-wrap justify-start">
+          {
+            project.topics.map((t) => <Topic key={t.name} topic={t} />)
+          }
+        </div>
+    }
     {
       project.owner.login !== 'ztcollazo' ? (
         <div className="flex flex-row justify-start items-center">
@@ -33,7 +37,7 @@ export const Project: FC<{ project: Repository }> = ({ project }) => (
       )
         : null
     }
-  </li>
+  </Card>
 );
 
 export default Project;

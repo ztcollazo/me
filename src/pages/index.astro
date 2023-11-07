@@ -13,17 +13,16 @@ const [project] = await getAllProjects('ztcollazo', 1) // Gets most popular proj
 		<Hero client:only="react" />
 		<noscript class="flex flex-col justify-center items-center h-full w-full sm:p-6 p-3 gap-4">
 			<h1 class="text-center sm:text-6xl text-3xl h-full w-full">Hey, I'm Zachary</h1>
-			<h2 class="text-md text-center">You are viewing the JavaScript-less version of this page.</h2>
+			<h2 class="text-xs text-center">You have JavaScript disabled. Some features may not work.</h2>
 		</noscript>
 	</div>
 	<div class="grid lg:grid-cols-2 w-full h-full gap-4 max-w-full">
-		<div class="clay w-full h-full md:p-12 sm:p-6 p-5 flex flex-col justify-between">
+		<div class="w-full h-full flex flex-col justify-between">
 			<div>
-				<h1 class="sm:text-4xl text-2xl mb-4">Learn more <a href="/about" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>about me</a>.</h1>
+				<h1 class="sm:text-4xl text-2xl mb-6">Learn more <a href="/about" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>about me</a>.</h1>
 				<p class="font-thin text-lg line-clamp-3">
-					I'm a teenager from Chesterfield, VA. I like making cool websites and apps and
-					whatever else you want me to make. I strive to learn everything I can get my hands on. 
-					I've always had an inclination to math and science, which has led me to an interest in technology.<br /><br />
+					I'm a high schooler from Powhatan, VA. I like using my skills in programming and technology to build and design websites, apps, and even robots.
+					I strive to learn everything I can get my hands on. I've always had an inclination to math and science, which has led me to an interest in technology.<br /><br />
 					I have about two years of experience with hardware and software development, but I tend
 					to work on the software more. Most of my knowledge comes from <a href="//github.com/ericcecchi">my uncle</a>,
 					who is a full-stack developer for <a href="//arcadia.com">Arcadia</a>.
@@ -32,10 +31,10 @@ const [project] = await getAllProjects('ztcollazo', 1) // Gets most popular proj
 			<a class="flex gap-2 items-center font-bold" href="/about">Learn more <FaChevronCircleRight /></a>
 		</div>
 		<div class="w-full h-full max-w-full">
-			<h1 class="clay sm:text-4xl text-2xl mb-4 sm:p-6 p-5 md:p-14">Check out <a href="/projects" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>my projects</a>.</h1>
+			<h1 class="sm:text-4xl text-2xl mb-4">Check out <a href="/projects" class="hover-highlight font-bold" style={`--hh-color: ${randomColor(true)};`}>my projects</a>.</h1>
 			<div class="flex flex-col gap-4 justify-between items-center">
 				<Project project={project} />
-				<a class="clay p-5 w-full flex gap-2 font-bold items-center self-start" href="/projects">See more <FaChevronCircleRight /></a>
+				<a class="p-3 w-full flex gap-2 font-bold items-center self-start" href="/projects">See more <FaChevronCircleRight /></a>
 			</div>
 		</div>
 	</div>
