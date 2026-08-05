@@ -2,9 +2,11 @@
 dist/
 .output/
 .vercel
+.astro
 
 # dependencies
 node_modules/
+bun.lock
 
 # logs
 npm-debug.log*

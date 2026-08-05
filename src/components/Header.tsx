@@ -1,74 +1,94 @@
-import {
-  FC, useState, useCallback, memo
-} from 'react';
-import { Squash } from 'hamburger-react';
-import useTheme from '@/utils/use-theme';
-import NavLink from './NavLink';
-import Button from './core/Button';
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
-// Used for the navbar
-const PageLink: FC<{ href: string, className?: string, onClick?: () => void, children?: React.ReactNode | undefined }> = ({
-  href, className, onClick, children
-}) => <NavLink onClick={onClick} activeClassName="active" className={`h-full py-8 font-bold px-6 mx-3 text-xl m-1 text-center animated ${className}`} href={href}>{children}</NavLink>;
+const links = [
+  { label: "Home", href: "/" },
+	{ label: "About", href: "/#about" },
+	{ label: "Projects", href: "/projects" },
+];
 
-PageLink.defaultProps = {
-  className: '',
-  onClick: () => null,
-};
+export function Header() {
+	const [open, setOpen] = useState(false);
 
-// This is the header itself
-const Header = memo(function Header() {
-  const theme = useTheme();
-  const [shouldOpen, setShouldOpen] = useState(false); // need this to define intent
-  const [open, setOpen] = useState(false); // this defines if the header is fully open
-  const [h, setH] = useState('0');
+	return (
+		<header className="fixed inset-x-0 top-0 z-50">
+			{/* backdrop blur strip */}
+			<div className="border-b border-border/60 bg-background/80 backdrop-blur-md">
+				<nav
+					className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+					aria-label="Primary"
+				>
+					{/* wordmark */}
+					<a
+						href="/"
+						className="font-header text-sm font-semibold tracking-widest text-foreground uppercase"
+						aria-label="Zachary Collazo — home"
+					>
+						Zachary Collazo
+					</a>
 
-  // toggle the responsive nav
-  const toggle = useCallback(() => {
-    setH(h === '0' || h === '0px' ? '400px' : '0');
-    setShouldOpen(!shouldOpen);
-    if (open) {
-      setTimeout(() => setOpen(!open), 400);
-    } else {
-      setTimeout(() => setOpen(!open), 100);
-    }
-  }, [h, open, shouldOpen]);
+					{/* desktop links */}
+					<ul className="hidden gap-8 md:flex">
+						{links.map(({ label, href }) => (
+							<li key={label}>
+								<a
+									href={href}
+									className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+								>
+									{label}
+								</a>
+							</li>
+						))}
+					</ul>
 
-  return (
-    <header className="flex flex-col gap-4 items-center bg-white min-w-full border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-600">
-      <div className="flex justify-between items-center px-5 py-2 w-full right-0 dark:text-white text-black">
-        <a href="/" aria-label="home" className="flex flex-col justify-center items-center md:items-start">
-          <img src={`/me-${theme}.png`} alt="" className="z-[500]" width={40} height={40} />
-        </a>
-        <nav className="hidden md:flex gap-4 items-center justify-end m-0 px-5 py-2">
-          <PageLink href="/">Home</PageLink>
-          <PageLink href="/about">About</PageLink>
-          <PageLink href="/projects">Projects</PageLink>
-          <Button type={NavLink} className="max-w-full ml-4 block text-center" activeClassName="bg-blue-400" href="/resume">Resume</Button>
-        </nav>
-        <button type="button" onClick={toggle} className="md:hidden text-current">
-          <Squash
-            color="currentColor"
-            toggle={toggle}
-            toggled={shouldOpen}
-            label="Toggle nav menu"
-          />
-        </button>
-      </div>
-      <nav
-        style={{
-          transition: 'max-height 0.5s ease-in-out',
-          maxHeight: h,
-        }}
-        className="md:hidden flex flex-col gap-2 m-0 -mt-4 items-start overflow-hidden w-full"
-      >
-        <PageLink onClick={toggle} className="mx-4 block w-max" href="/">Home</PageLink>
-        <PageLink onClick={toggle} className="mx-4 block w-max" href="/about">About</PageLink>
-        <PageLink onClick={toggle} className="mx-4 block w-max" href="/projects">Projects</PageLink>
-        <Button type={NavLink} className="max-w-full m-4 block text-center" activeClassName="bg-blue-400" href="/resume">Resume</Button>
-      </nav>
-    </header>
-  );
-});
+					{/* desktop CTA */}
+					<a
+						href="mailto:zacharytcollazo@gmail.com"
+						className="hidden rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground md:inline-flex"
+					>
+						Contact me
+					</a>
 
-export default Header;
+					{/* mobile menu toggle */}
+					<button
+						type="button"
+						className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground md:hidden"
+						onClick={() => setOpen((v) => !v)}
+						aria-expanded={open}
+						aria-controls="mobile-menu"
+						aria-label="Toggle navigation menu"
+					>
+						{open ? <X size={20} /> : <Menu size={20} />}
+					</button>
+				</nav>
+
+				{/* mobile menu */}
+				{open && (
+					<div id="mobile-menu" className="border-t border-border/60 md:hidden">
+						<ul className="flex flex-col gap-1 px-6 py-4">
+							{links.map(({ label, href }) => (
+								<li key={label}>
+									<a
+										href={href}
+										onClick={() => setOpen(false)}
+										className="block py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+									>
+										{label}
+									</a>
+								</li>
+							))}
+							<li className="pt-3">
+								<a
+									href="mailto:zacharytcollazo@gmail.com"
+									className="inline-flex rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+								>
+									Contact me
+								</a>
+							</li>
+						</ul>
+					</div>
+				)}
+			</div>
+		</header>
+	);
+}

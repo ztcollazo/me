@@ -1,47 +1,76 @@
 ---
-import { HiOutlineExternalLink, HiOutlineStar } from 'react-icons/hi';
-import { RiGithubLine } from 'react-icons/ri';
-import Main from '@/layouts/Main.astro';
-import Topic from '@/components/Topic';
-import { nameFor, ownerFor } from '@/utils/meta-for';
-import { getProject } from '@/utils/github';
-import resources from '@/resources/projects.json';
-import markdown from '@/utils/markdown';
+import { CollectionEntry, getCollection, render } from "astro:content";
+import { HiOutlineExternalLink, HiOutlineStar } from "react-icons/hi";
+import { RiGithubLine } from "react-icons/ri";
+import { ProjectType } from "@/components/Project";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
+import { Card, CardContent } from "@/components/ui/card";
+import Main from "@/layouts/Main.astro";
+import { getReadme, getStars } from "@/lib/github";
+import markdown from "@/lib/markdown";
 
-if (Astro.params.name === 'ztcollazo' || Astro.params.name === '404-Pathmaking-Tools' || Astro.params.name === '.github') {
-  return new Response(null, {
-    status: 404,
-    statusText: 'Not Found'
-  });
+export async function getStaticPaths() {
+	const projects = await getCollection("projects");
+	return projects.map((project) => ({
+		params: { name: project.id },
+		props: { project },
+	}));
 }
 
-const project = await getProject(String(Astro.params.name), ownerFor(String(Astro.params.name)), true)
+const { project: raw }: { project: CollectionEntry<"projects"> } = Astro.props;
+
+const project = { slug: raw.id, ...raw.data } as ProjectType;
+
+const readme = await getReadme(
+	project.github.split("/").at(-1) ?? "",
+	project.github.split("/").at(-2) ?? "",
+);
+const stars = await getStars(project.github);
+
+const { Content } = await render(raw);
 ---
-<Main title={nameFor(project.name)}>
-  <div class="flex flex-col justify-between w-full items-center sm:p-4 gap-4">
-    <h1 class="text-2xl font-bold sm:text-4xl sm:self-start">{nameFor(project.name)}</h1>
-    <div class="markdown sm:ml-3" set:html={markdown(Buffer.from(resources[project.name] ?? '', 'base64').toString())}></div>
-    <div class="lg:grid gap-5 w-full flex flex-col" style="grid-template-columns: 65% 33.5%;">
-      <div class="markdown overflow-x-auto min-w-full w-0 clay p-6 hidden md:block" set:html={markdown(project.readme.text)}></div>
-      <div class="w-full p-6 md:hidden text-center">
-        <a class="font-bold text-lg" href={project.readme.url}>View project README.</a>
+<Main title={project.title}>
+  <div class="flex flex-col justify-between m-auto mt-20 gap-2 md:w-3/4 relative">
+    <div class="flex gap-2 w-full">
+      <div class="flex flex-col w-full grow">
+        <h1 class="sm:text-6xl text-5xl font-bold md:p-5 p-3 pb-0 w-full">{project.title}</h1>
+        <p class="text-md text-muted-foreground md:px-5 p-3 pt-0 w-full">{project.description}</p>
       </div>
-      <div class="p-6 flex flex-col gap-4">
-        <span class="flex justify-around items-center w-full sm:gap-4 gap-2">
-          {project.homepageUrl && <a target="_blank" rel="noopener noreferrer" aria-label="Open page" class="inline-block rounded-full border border-transparent hover:border-current p-2" href={['http', 'https', '//'].some((s) => project.homepageUrl.startsWith(s)) ? project.homepageUrl : 'https://'.concat(project.homepageUrl)}><HiOutlineExternalLink size={18} /></a>}
-          {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Open github repository" class="inline-block rounded-full border border-transparent hover:border-current p-2" href={project.url}><RiGithubLine size={18} /></a>}
-          {!project.isPrivate && <a target="_blank" rel="noopener noreferrer" aria-label="Stars" class="flex gap-3 justify-between items-center rounded-full border border-transparent hover:border-current p-2" href={project.url + "/stargazers"}>
-            <HiOutlineStar size={18} />
-            <span>{project.stargazerCount}</span>
-          </a>}
-        </span>
-        <p class="text-lg">{project.description}</p>
-        <div class="flex flex-row md:flex-wrap justify-start">
-        {
-          project.topics.map((t) => <Topic topic={t} />)
-        }
-      </div>
+      <div class="p-6 flex flex-col gap-4 items-end w-full shrink-2">
+        <ButtonGroup className="max-w-full">
+          {project.url && <Button is="div" nativeButton={false} variant="outline">
+            <a class="flex gap-2 items-center w-full" target="_blank" rel="noopener noreferrer" aria-label="Open page" href={['http', 'https', '//'].some((s) => project.url.startsWith(s)) ? project.url : 'https://'.concat(project.url)}>
+              <HiOutlineExternalLink size={18} /> Open Website
+            </a>
+          </Button>}
+          {project.public && <Button is="div" nativeButton={false} variant="outline">
+            <a class="flex gap-2 items-center w-full" target="_blank" rel="noopener noreferrer" aria-label="Open github repository" href={project.github}>
+              <RiGithubLine data-icon="inline-start" size={18} /> Open GitHub
+            </a>
+          </Button>}
+          {project.public && <Button is="div" nativeButton={false} variant="outline">
+            <a class="flex gap-2 items-center w-full" target="_blank" rel="noopener noreferrer" aria-label="Stars"href={project.github + "/stargazers"}>
+              <HiOutlineStar data-icon="inline-start" size={18} />
+              {stars}
+            </a>
+          </Button>}
+        </ButtonGroup>
+        <div class="flex flex-row md:flex-wrap gap-2 justify-start">
+          {
+            project.topics.map((t) => (
+              <a target="_blank" rel="noopener noreferrer" href={`https://github.com/topics/${t}`}><Badge>{t}</Badge></a>
+            ))
+          }
+        </div>
       </div>
     </div>
+    <div class="md:px-5 px-3 pb-10">
+      <Content />
+    </div>
+    <Card>
+      <CardContent className="markdown" set:html={markdown(readme)} />
+    </Card>
   </div>
 </Main>
