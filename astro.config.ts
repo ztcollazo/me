@@ -1,7 +1,6 @@
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import sveltia from "astro-loader-sveltia-cms";
 
@@ -47,11 +46,6 @@ export default defineConfig({
 			},
 		}),
 	],
-	adapter: netlify({
-		edgeMiddleware: true,
-	}),
+	adapter: netlify(),
 	output: "static",
-	vite: {
-		plugins: [tailwindcss()],
-	},
 });
