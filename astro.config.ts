@@ -6,7 +6,7 @@ import sveltia from "astro-loader-sveltia-cms";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://ztcollazo.netlify.app",
+	site: "https://zacharycollazo.com",
 	fonts: [{
 		provider: fontProviders.fontsource(),
 		name: "Space Grotesk",

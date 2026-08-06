@@ -43,7 +43,7 @@ export function Header() {
 
 					{/* desktop CTA */}
 					<a
-						href="mailto:zacharytcollazo@gmail.com"
+						href="mailto:hello@zacharycollazo.com"
 						className="hidden rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground md:inline-flex"
 					>
 						Contact me
@@ -79,7 +79,7 @@ export function Header() {
 							))}
 							<li className="pt-3">
 								<a
-									href="mailto:zacharytcollazo@gmail.com"
+									href="mailto:hello@zacharycollazo.com"
 									className="inline-flex rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
 								>
 									Contact me
