@@ -51,7 +51,7 @@ export function AboutSection() {
 			{/* Right-side glow */}
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -right-60 top-1/3 h-125 w-125 rounded-full"
+				className="pointer-events-none absolute -right-40 top-1/3 h-125 w-125 rounded-full"
 				style={{
 					background:
 						"radial-gradient(circle, oklch(0.65 0.22 250 / 0.09) 0%, transparent 70%)",

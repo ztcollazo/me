@@ -35,7 +35,7 @@ export const Project: FC<{ project: ProjectType }> = ({ project }) => {
 	const owner = project.github.split("/").at(-2);
 
 	return (
-		<Card className="md:grow flex flex-col justify-between">
+		<Card className="md:grow hover:translate-x-1 hover:-translate-y-1 delay-200 duration-400 transition flex flex-col justify-between">
 			<CardHeader>
 				<CardTitle>
 					<a href={`/projects/${project.slug}`}>{project.title}</a>
