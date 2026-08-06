@@ -7,7 +7,6 @@ import Main from "@/layouts/Main.astro";
 const projects = (await getCollection("projects")).map((project) => {
 	return { slug: project.id, ...project.data };
 });
-console.log(projects);
 ---
 
 <Main title="Projects">
