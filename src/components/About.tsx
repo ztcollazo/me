@@ -51,7 +51,7 @@ export function AboutSection() {
 			{/* Right-side glow */}
 			<div
 				aria-hidden="true"
-				className="pointer-events-none absolute -right-40 top-1/3 h-125 w-125 rounded-full"
+				className="pointer-events-none hidden md:block absolute -right-40 top-1/3 h-125 w-125 rounded-full"
 				style={{
 					background:
 						"radial-gradient(circle, oklch(0.65 0.22 250 / 0.09) 0%, transparent 70%)",
@@ -60,7 +60,7 @@ export function AboutSection() {
 
 			<div className="relative mx-auto w-full max-w-6xl">
 				{/* ── TOP: Intro split ──────────────────────────────────────────────── */}
-				<div className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr] lg:gap-0">
+				<div className="mb-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-0">
 					{/* Left — narrative */}
 					<div className="flex flex-col gap-8 lg:pr-16">
 						<div>
