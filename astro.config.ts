@@ -1,12 +1,21 @@
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import sveltia from "astro-loader-sveltia-cms";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://ztcollazo.netlify.app",
+	fonts: [{
+		provider: fontProviders.fontsource(),
+		name: "Space Grotesk",
+		cssVariable: "--font-space-grotesk",
+	}, {
+		provider: fontProviders.fontsource(),
+		name: "Geist",
+		cssVariable: "--font-geist",
+	}],
 	integrations: [
 		react(),
 		sitemap(),

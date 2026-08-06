@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import "highlight.js/styles/github-dark.css";
 import Footer from "../components/Footer.astro";
 import { Header } from "../components/Header";
+import { Font } from "astro:assets";
 
 export interface Props {
 	title?: string;
@@ -17,6 +18,8 @@ const { title } = Astro.props;
 	<meta name="viewport" content="width=device-width">
 	<title>{title ? `${title} | Zachary Collazo` : 'Zachary Collazo'}</title>
 	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <Font cssVariable="--font-space-grotesk" />
+  <Font cssVariable="--font-geist" />
 </head>
 <body class="min-h-screen flex flex-col bg-background">
 	<div
